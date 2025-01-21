@@ -16,7 +16,8 @@ export default {
             },
             screens: {
                 'sm': '375px', // mobile
-                'md': '640px',
+                'sml': '420px',
+                'md': '560px',
                 'lg': '768px', // tablet
                 'xl': '1024px', // not
                 '2xl': '1280px',

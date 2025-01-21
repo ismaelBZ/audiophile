@@ -1,0 +1,28 @@
+# Query: productCategories
+# Including: src/**
+# ContextLines: 1
+
+5 results - 3 files
+
+src\pages\Earphones.tsx:
+  3  import ProductCard from "../components/shared/ProductCard";
+  4: import CatagoriesList from "../components/shared/CategoriesList";
+  5  
+
+src\pages\Home.tsx:
+   3  import MainProduct from "../components/home/MainProduct";
+   4: import CatagoriesList from "../components/shared/CategoriesList";
+   5  import HighlightedProduct from "../components/home/HighlightedProduct";
+
+  32                  <div className="mt-10 mb-32">
+  33:                     <CatagoriesList />
+  34                  </div>
+
+src\pages\Speakers.tsx:
+   3  import ProductCard from "../components/shared/ProductCard";
+   4: import CatagoriesList from "../components/shared/CategoriesList";
+   5  import AboutUs from "../components/shared/AboutUs";
+
+  27                  {/* Categories */}
+  28:                 <CatagoriesList />
+  29                  

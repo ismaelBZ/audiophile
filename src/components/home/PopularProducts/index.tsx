@@ -1,5 +1,5 @@
 import ProductImage from "./../../../assets/home/mobile/image-speaker-zx7.jpg";
-import Button from "./../../utils/buttons/Secondary";
+import Button from "../../utils/buttons/Secondary";
 
 const PopularProducts = () => {
     return (

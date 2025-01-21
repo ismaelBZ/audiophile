@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import ProductImage from "./../../../assets/home/mobile/image-speaker-zx9.png";
-import Button from "./../../utils/buttons/Secondary";
+import Button from "../../utils/buttons/Secondary";
 
 const HighlightedProduct = () => {
 
