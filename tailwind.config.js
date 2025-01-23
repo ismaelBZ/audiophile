@@ -11,7 +11,7 @@ export default {
                 'ice': '#F1F1F1',
                 'peru': '#D87D4A',
                 'sandy': '#fbaf85',
-                'shadow': '#101010',
+                'shadow': '#181818', // 101010
                 'snow': '#FAFAFA'
             },
             screens: {

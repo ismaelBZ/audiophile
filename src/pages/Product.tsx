@@ -18,7 +18,7 @@ const Product = () => {
             </div>
 
             { /* CART */}
-            <Cart />
+            {/* <Cart /> */}
             
             {/* Go Back Button */}
             <GoBack />

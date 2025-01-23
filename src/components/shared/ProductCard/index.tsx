@@ -4,6 +4,18 @@ import ProductImageDesktop from "./../../../assets/shared/Products/Desktop/image
 import Button from "./../../utils/buttons/Primary";
 
 
+const data = {
+    productName: "XX99 Mark II Headphones",
+    description: "The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.",
+    newProduct: true,
+    productUrl: "",
+    categoryImages: {
+        mobileUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/Category/image-category-mobile.jpg?updatedAt=1737571367439",
+        tabletUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/Category/image-category-tablet.jpg?updatedAt=1737571402974",
+        desktopUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/Category/image-category-desktop.jpg?updatedAt=1737571403081"
+    }
+}
+
 const ProductCard = ({reverse} : {reverse?: boolean}) => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const xlFlexDirection = reverse ? "xl:flex-row-reverse" : "xl:flex-row"
@@ -20,10 +32,12 @@ const ProductCard = ({reverse} : {reverse?: boolean}) => {
     }
 
     const imageSrcSet = () => {
-        if (windowWidth < 1024) {
-            return ProductImageMobile;
+        if (windowWidth < 560) {
+            return data.categoryImages.mobileUrl;
+        } else if (windowWidth < 1024) {
+            return data.categoryImages.tabletUrl;
         } else {
-            return ProductImageDesktop;
+            return data.categoryImages.desktopUrl;
         }
     }
 
@@ -43,18 +57,18 @@ const ProductCard = ({reverse} : {reverse?: boolean}) => {
                 xl:items-start xl:gap-4 xl:max-w-[445px] xl:basis-5/12
             ">
                 <p className="text-[14px] tracking-[10px] text-center text-peru uppercase">
-                    NEW PRODUCT
+                    {data.newProduct && "NEW PRODUCT"}
                 </p>
                 <h2 className="max-w-[200px] font-bold text-[28px] text-center
                         md:text-[40px] md:max-w-[400px]
                         xl:text-left xl:leading-[1] 
                 ">
-                    XX99 Mark II Headphones
+                    {data.productName}
                 </h2>
                 <p className="text-[15px] text-gray text-center
                         xl:text-start xl:leading-[1.7] xl:my-4
                 ">
-                    The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.
+                    {data.description}
                 </p>
                 <Button />
             </div>

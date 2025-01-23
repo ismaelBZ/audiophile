@@ -10,11 +10,11 @@ import AboutUs from "../components/shared/AboutUs";
 
 const Home = () => {
     return (
-        <div className='mx-6'>
+        <div className='mx-6 md:mx-10 lg:mx-14 xl:mx-20'>
         {/* General app margins */}
             
             {/* HEADER */}
-            <div className="-mx-6 absolute w-full">
+            <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20 absolute w-full">
                 {/* Change the bg-color when is in home */}
                 <Header isInHome={true} />
             </div>
@@ -24,7 +24,7 @@ const Home = () => {
             <main>
 
                 {/* Big initial card */}
-                <div className="-mx-6">
+                <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20 ">
                     <MainProduct />
                 </div>
 
@@ -35,26 +35,26 @@ const Home = () => {
 
                 {/* Products List */}
                 <ul className="flex flex-col gap-6">
-                    <li>
+                    <li className="xl:mx-auto xl:w-[100%] xl:max-w-[1110px] ">
                         <HighlightedProduct />
                     </li>
-                    <li>
+                    <li className="2xl:mx-auto 2xl:max-w-[1110px]">
                         <PopularProducts />
-                    </li>
-                    <li>
+                    </li> 
+                    <li className="xl:mx-auto xl:max-w-[1110px] ">
                         <TopRatedProduct />
                     </li>
                 </ul>
 
                 {/* About Us */}
-                <div className="-mx-6 my-24 sm:my-28 md:-mx-10 lg:-mx-14">
+                <div className="-mx-6 my-24 sm:my-28 md:-mx-10 lg:-mx-14 xl:max-w-[1110px] xl:mx-auto">
                     <AboutUs />
                 </div>
             </main>
 
 
             {/* FOOTER */}
-            <div className="-mx-6">
+            <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20">
                 <Footer />
             </div>
         </div>

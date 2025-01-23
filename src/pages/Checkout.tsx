@@ -2,12 +2,41 @@ import { useState } from 'react';
 import Header from "./../components/shared/Header";
 import Footer from "../components/shared/Footer";
 import GoBack from "../components/utils/buttons/GoBack";
-import Thumb from "./../assets/shared/Products/Mobile/thumb.png";
 import Button from "./../components/utils/buttons/Primary";
 import CheckoutModal from '../components/Checkout/Modal';
+import { CartItem } from '../types/CartItem_T';
+import PaymentResume from '../Utils/PaymentResume';
+import { formatPrice } from '../Utils/utils';
+
+// Cart List Array comes from cart;
+const cartList: CartItem[] = [
+    {
+        thumbUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/thumb.png?updatedAt=1737456762936",
+        thumbName: "XX99 MK II",
+        price: 2999,
+        priceFormatted: formatPrice(2999),
+        quantity: 1
+    },
+    {
+        thumbUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/thumb.png?updatedAt=1737456762936",
+        thumbName: "XX99 MK II",
+        price: 2999,
+        priceFormatted: formatPrice(2999),
+        quantity: 1
+    },
+    {
+        thumbUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/thumb.png?updatedAt=1737456762936",
+        thumbName: "XX99 MK II",
+        price: 2999,
+        priceFormatted: formatPrice(2999),
+        quantity: 1
+    }
+]
 
 const Checkout = () => {
     const [eMoney, setEMoney] = useState(true);
+    
+    const paymentResume = new PaymentResume(cartList);
 
     const handleSubmit = () => { }
 
@@ -21,11 +50,13 @@ const Checkout = () => {
                 </div>
                 <GoBack />
 
-                <CheckoutModal />
+                <CheckoutModal cartList={cartList}/>
+
                 {/* MAIN */}
                 <main className="mb-24 flex flex-col gap-8">
                     
                 <div className="xl:max-w-[1110px] xl:mx-auto xl:flex xl:gap-7 xl:items-start">
+                    
                     {/* Checkout Card */}
                     <div className="p-6 bg-white rounded-md basis-[65%]">
                         <h2 className="font-bold tracking-[1px] text-[28px] uppercase leading-[1]">Checkout</h2>
@@ -73,7 +104,7 @@ const Checkout = () => {
                                 </div>
                             </fieldset>
 
-                            {/* Shipping Info */}
+                            {/* _Shipping Info */}
                             <fieldset className="flex flex-col gap-6 lg:flex-row lg:flex-wrap lg:gap-x-4">
 
                                 <legend className="mb-4 font-bold text-[13px] tracking-[0.93px] uppercase text-peru">Shipping Info</legend>
@@ -132,7 +163,7 @@ const Checkout = () => {
                                 <legend className="mb-4 font-bold text-[13px] tracking-[0.93px] uppercase text-peru">Payment Details</legend>
 
                                 {/* Payment method */}
-                                <fieldset className="flex flex-col gap-4 items-end">
+                                <fieldset className="flex flex-col gap-4 lg:items-end">
                                     <legend className="my-4 font-bold text-[12px] lg:-my-4">Payment Method</legend>
 
                                     {/* e-money */}
@@ -196,21 +227,21 @@ const Checkout = () => {
                             {/* Thumb & Name + Price */}
                             <div className="flex items-center gap-3 sm:gap-4 md:gap-5">
                                 {/* Thumb */}
-                                <div className="w-[64px] aspect-square flex items-center justify-center bg-ice rounded-md">
-                                    <img src={Thumb} alt="" />
+                                <div className="w-[64px] p-[10px] aspect-square flex items-center justify-center bg-ice rounded-md">
+                                    <img src={cartList[0].thumbUrl} alt="" />
                                 </div>
                                 
                                 {/* Name & Price */}
                                 <div>
                                     {/* Product Name */}
-                                    <p className="font-bold uppercase">XX99 MK II</p>
+                                    <p className="font-bold uppercase">{cartList[0].thumbName}</p>
                                     {/* Price */}
-                                    <p className='font-bold text-[14px] text-gray'>$ {new Intl.NumberFormat('en-US', { style: 'decimal' }).format(2999)}</p>
+                                    <p className='font-bold text-[14px] text-gray'>$ {cartList[0].price}</p>
                                 </div>
                             </div>
 
                             {/* Quantity */}
-                            <p className="font-bold text-[15px] text-gray">x1</p>
+                            <p className="font-bold text-[15px] text-gray">x{cartList[0].quantity}</p>
                         </div>
 
                         {/* Payment resume*/}
@@ -224,20 +255,20 @@ const Checkout = () => {
                             <tbody>
                                 <tr>
                                     <td className="font-medium text-[15px] text-gray uppercase">Total</td>
-                                    <td className="text-right font-bold text-[18px]">$ {new Intl.NumberFormat('en-US', { style: 'decimal' }).format(2999)}</td>
+                                    <td className="text-right font-bold text-[18px]">{paymentResume.getTotal()}</td>
                                 </tr>
                                 <tr>
                                     <td className="font-medium text-[15px] text-gray uppercase">Shipping</td>
-                                    <td className="text-right font-bold text-[18px]">$ {new Intl.NumberFormat('en-US', { style: 'decimal' }).format(50)}</td>
+                                    <td className="text-right font-bold text-[18px]">{paymentResume.getShipping()}</td>
                                 </tr>
                                 <tr>
                                     <td className="font-medium text-[15px] text-gray uppercase">Vat (included)</td>
-                                    <td className="text-right font-bold text-[18px] text-peru">$ {new Intl.NumberFormat('en-US', { style: 'decimal' }).format(1079)}</td>
+                                    <td className="text-right font-bold text-[18px] text-peru">{paymentResume.getVat()}</td>
                                 </tr>
                             </tbody>
                             <tfoot>
-                                <td>Total</td>
-                                <td className="text-right font-bold text-[18px]">$ {new Intl.NumberFormat('en-US', { style: 'decimal' }).format(4037)}</td>
+                                <td className="font-medium text-[15px] text-gray uppercase"> Grand Total</td>
+                                <td className="text-right font-bold text-[18px]">{paymentResume.getGrandTotal()}</td>
                             </tfoot>
                         </table>
 
