@@ -1,25 +1,10 @@
-import {useState, useEffect} from 'react';
-import ProductImageMobile from "./../../../assets/shared/Products/Mobile/XX99_Mark_II_Headphones_Alpha.png"
-import ProductImageDesktop from "./../../../assets/shared/Products/Desktop/image-category-page-preview.jpg"
+import {useState, useEffect, useContext} from 'react';
 import Button from "./../../utils/buttons/Primary";
+import { ProductCard_T } from '../../../types/pages/categories/ProductCard_T';
 
-
-const data = {
-    productName: "XX99 Mark II Headphones",
-    description: "The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.",
-    newProduct: true,
-    productUrl: "",
-    categoryImages: {
-        mobileUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/Category/image-category-mobile.jpg?updatedAt=1737571367439",
-        tabletUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/Category/image-category-tablet.jpg?updatedAt=1737571402974",
-        desktopUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/Category/image-category-desktop.jpg?updatedAt=1737571403081"
-    }
-}
-
-const ProductCard = ({reverse} : {reverse?: boolean}) => {
+const ProductCard = ({reverse, product} : {reverse?: boolean, product: ProductCard_T}) => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const xlFlexDirection = reverse ? "xl:flex-row-reverse" : "xl:flex-row"
-
     useEffect(() => {
         getWidth()
         window.addEventListener('resize', getWidth);
@@ -33,11 +18,11 @@ const ProductCard = ({reverse} : {reverse?: boolean}) => {
 
     const imageSrcSet = () => {
         if (windowWidth < 560) {
-            return data.categoryImages.mobileUrl;
+            return product.categoryImages.mobileUrl;
         } else if (windowWidth < 1024) {
-            return data.categoryImages.tabletUrl;
+            return product.categoryImages.tabletUrl;
         } else {
-            return data.categoryImages.desktopUrl;
+            return product.categoryImages.desktopUrl;
         }
     }
 
@@ -57,18 +42,18 @@ const ProductCard = ({reverse} : {reverse?: boolean}) => {
                 xl:items-start xl:gap-4 xl:max-w-[445px] xl:basis-5/12
             ">
                 <p className="text-[14px] tracking-[10px] text-center text-peru uppercase">
-                    {data.newProduct && "NEW PRODUCT"}
+                    {product.newProduct && "NEW PRODUCT"}
                 </p>
                 <h2 className="max-w-[200px] font-bold text-[28px] text-center
                         md:text-[40px] md:max-w-[400px]
                         xl:text-left xl:leading-[1] 
                 ">
-                    {data.productName}
+                    {product.productName}
                 </h2>
                 <p className="text-[15px] text-gray text-center
                         xl:text-start xl:leading-[1.7] xl:my-4
                 ">
-                    {data.description}
+                    {product.description}
                 </p>
                 <Button />
             </div>

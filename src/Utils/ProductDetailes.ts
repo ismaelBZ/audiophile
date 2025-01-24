@@ -1,4 +1,4 @@
-import { Product } from "../types/Product_T";
+import { Product_T } from "../types/Product_T";
 import { formatPrice } from "./utils";
 
 export default class ProductDetailes {
@@ -22,7 +22,7 @@ export default class ProductDetailes {
     private _newProduct?:       boolean;
     private _boxItems:          {item: string, quantity:number}[]
 
-    constructor(product: Product) {
+    constructor(product: Product_T) {
         this._productName = product.productName;
         this._thumbName = product.thumbName;
         this._description = product.description;

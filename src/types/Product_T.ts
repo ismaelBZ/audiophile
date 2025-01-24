@@ -1,4 +1,4 @@
-export type Product = {
+export type Product_T = {
     productName:            string;
     thumbName:              string;
     description:            string;
@@ -27,12 +27,12 @@ type BoxItems = {
     quantity:               number;
 }
 
-type SimilarProduct = {
+export type SimilarProduct = {
     productName:            string;
     productUrl:             string;
     images: {
         mobileUrl:          string;
         tabletUrl:          string;
-        desktop:            string;
+        desktopUrl:         string;
     }
 }

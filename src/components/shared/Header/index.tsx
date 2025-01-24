@@ -5,19 +5,21 @@ import cartIcon from "./../../../assets/header/icon-cart.svg"
 const Header = ({isInHome} : {isInHome: boolean}) => {
     return (
         <div style={{backgroundColor: isInHome ? 'transparent' : 'black'}}>
+            {/* bg transparent in home */}
             <header className="px-6 py-8 flex items-center justify-between border-b-[1px] border-[#2c2c2c]
-                        md:px-10 lg:px-14
-                        xl:px-20 
-                        2xl:max-w-[1110px] 2xl:mx-auto 2xl:px-0
-                    " 
-            >
+                        md:px-10 lg:px-14 xl:px-20 
+                        2xl:max-w-[1110px] 2xl:mx-auto 2xl:px-0" 
+            >   
+                {/* Menu icon */}
                 <button aria-label='Open menu'>
                     <img src={menuIcon} alt="" />
                 </button>
+                {/* brand */}
                 <div>
                     <img src={Logo} alt="" />
                     <h1 className="sr-only">audiophile</h1>
                 </div>
+                {/* cart */}
                 <button aria-label="Open cart">
                     <img src={cartIcon} alt="" />
                 </button>

@@ -1,17 +1,8 @@
 import {useState, useEffect} from "react";
-import ProductImage from "./../../../assets/home/mobile/image-earphones-yx1.jpg";
 import Button from "../../utils/buttons/Secondary";
+import { TopRatedProduct_T } from "../../../types/pages/home/TopRatedProduct_T";
 
-const data = {
-    productName: "YX1 EARPHONES",
-    images: {
-        mobileUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/top-rated/topRated-mobile.jpg?updatedAt=1737575234773",
-        tabletUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/top-rated/topRated-tablet.jpg?updatedAt=1737575235087",
-        desktopUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/top-rated/topRated-desktop.jpg?updatedAt=1737575234966"
-    }
-}
-
-const TopRatedProduct = () => {
+const TopRatedProduct = ({product} : {product: TopRatedProduct_T}) => {
 
     const [width, setWidth] = useState(window.innerWidth);
     
@@ -47,7 +38,9 @@ const TopRatedProduct = () => {
         <div className="md:grid md:grid-cols-2 md:gap-4">
             {/* Image */}
             <img 
-                src={media == "mobile" ? data.images.mobileUrl : media == "tablet" ? data.images.tabletUrl : data.images.desktopUrl} 
+                src={media == "mobile" ? product.images.mobileUrl 
+                    : media == "tablet" ? product.images.tabletUrl 
+                    : product.images.desktopUrl} 
                 className="object-cover rounded-md md:max-h-[320px] w-full"
                 alt="" />
             
@@ -57,7 +50,7 @@ const TopRatedProduct = () => {
                     md:mt-0 md:flex flex-col items-start justify-center"
             >
                 <h2 className="mb-7 font-bold text-2xl sm:text-[28px] tracking-[2px] uppercase">
-                    {data.productName}
+                    {product.productName}
                 </h2>
                 <Button />
             </div>

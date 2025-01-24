@@ -4,10 +4,48 @@ import ProductCard from "../components/shared/ProductCard";
 import CategoriesList from "../components/shared/CategoriesList";
 import AboutUs from "../components/shared/AboutUs";
 
+const data = {
+    products: [ 
+        {
+            productName: "XX99 Mark II Headphones",
+            description: "The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.",
+            newProduct: true,
+            productUrl: "",
+            categoryImages: {
+                mobileUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/Category/image-category-mobile.jpg?updatedAt=1737571367439",
+                tabletUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/Category/image-category-tablet.jpg?updatedAt=1737571402974",
+                desktopUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/Category/image-category-desktop.jpg?updatedAt=1737571403081"
+            },
+        },
+        {
+            productName: "XX99 Mark II Headphones",
+            description: "The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.",
+            newProduct: true,
+            productUrl: "",
+            categoryImages: {
+                mobileUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/Category/image-category-mobile.jpg?updatedAt=1737571367439",
+                tabletUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/Category/image-category-tablet.jpg?updatedAt=1737571402974",
+                desktopUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/Category/image-category-desktop.jpg?updatedAt=1737571403081"
+            },
+        },
+        {
+            productName: "XX99 Mark II Headphones",
+            description: "The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.",
+            newProduct: true,
+            productUrl: "",
+            categoryImages: {
+                mobileUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/Category/image-category-mobile.jpg?updatedAt=1737571367439",
+                tabletUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/Category/image-category-tablet.jpg?updatedAt=1737571402974",
+                desktopUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/Category/image-category-desktop.jpg?updatedAt=1737571403081"
+            }
+        }
+    ],
+}
+
 const Earphones = () => {
     return (
         <div className='mx-6 md:mx-10 lg:mx-14 xl:mx-20'>
-            {/* General app margins */}
+            {/* General app margin */}
 
             {/* HEADER */}
             <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20">
@@ -17,21 +55,37 @@ const Earphones = () => {
 
 
             {/* MAIN */}
-            <main className="pt-16 pb-32 flex flex-col gap-28 sm:gap-32">
+            <main className="pt-16 pb-32 flex flex-col gap-32">
 
-                {/* Products List */}
-                <ul className="flex flex-col gap-28 sm:gap-32">
-                    <li>
-                        <ProductCard />
-                    </li>
+                {/* Products list */}
+                <ul className="flex flex-col gap-28 sm:gap-32 
+                ">
+                    {/* If it's even reverse else (is's odd) normal */}
+                    {data.products.map((product, index) => {
+                        if (index % 2 == 0) {
+                            return (
+                                <li key={index}>
+                                    <ProductCard product={product} reverse/>
+                                </li>
+                            );
+                        } else {
+                            return (
+                                <li key={index}>
+                                    <ProductCard product={product}/>
+                                </li>
+                            )
+
+                        }
+                    })}
                 </ul>
 
+                {/* Categories */}
                 <CategoriesList />
 
-                <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20 2xl:max-w-[1110px] 2xl:mx-auto">
-                    <AboutUs />
+                {/* About Us */}
+                <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20 2xl:mx-0 3xl:max-w-[1110px] 3xl:mx-auto">
+                    <AboutUs  />
                 </div>
-                
             </main>
 
 
@@ -42,4 +96,5 @@ const Earphones = () => {
         </div>
     )
 }
+
 export default Earphones
