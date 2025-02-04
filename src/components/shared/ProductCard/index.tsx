@@ -1,25 +1,16 @@
-import {useState, useEffect, useContext} from 'react';
+import { ProductCard_T } from '../../../types/pages/productCard/ProductCard_T';
 import Button from "./../../utils/buttons/Primary";
-import { ProductCard_T } from '../../../types/pages/categories/ProductCard_T';
+import { useWindowContext } from '../../../context/windowContext';
 
 const ProductCard = ({reverse, product} : {reverse?: boolean, product: ProductCard_T}) => {
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const {width} = useWindowContext();
     const xlFlexDirection = reverse ? "xl:flex-row-reverse" : "xl:flex-row"
-    useEffect(() => {
-        getWidth()
-        window.addEventListener('resize', getWidth);
-        
-        return () => {window.removeEventListener('resize', getWidth)}
-    }, []);
 
-    const getWidth = () => {
-        setWindowWidth(window.innerWidth);
-    }
 
     const imageSrcSet = () => {
-        if (windowWidth < 560) {
+        if (width < 560) {
             return product.categoryImages.mobileUrl;
-        } else if (windowWidth < 1024) {
+        } else if (width < 1024) {
             return product.categoryImages.tabletUrl;
         } else {
             return product.categoryImages.desktopUrl;
@@ -28,12 +19,12 @@ const ProductCard = ({reverse, product} : {reverse?: boolean, product: ProductCa
 
     return (
         <article className={`flex flex-col items-center gap-8 
-            ${xlFlexDirection} 
+            ${xlFlexDirection}
             xl:gap-32 xl:max-w-[1110px] xl:m-auto 
         `}>
             {/* Image */}
-            <div className="bg-ice w-full rounded-lg xl:grow xl:basis-7/12">
-                <img className="mx-auto xl:max-h-[400px] 3xl:max-h-[560px]" src={imageSrcSet()} alt="" />
+            <div className="bg-ice w-full rounded-lg md:max-h-[400px] md:flex md:items-center md:overflow-hidden xl:max-h-[unset] xl:grow xl:basis-7/12">
+                <img className="mx-auto md:max-h-[800px] xl:max-h-[400px] 3xl:max-h-[560px]" src={imageSrcSet()} alt="" />
             </div>
 
             {/* Info */}
@@ -55,7 +46,8 @@ const ProductCard = ({reverse, product} : {reverse?: boolean, product: ProductCa
                 ">
                     {product.description}
                 </p>
-                <Button />
+                {/* Button */}
+                <Button to={product.productUrl}/>
             </div>
         </article>
     )

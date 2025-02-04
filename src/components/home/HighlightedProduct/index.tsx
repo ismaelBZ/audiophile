@@ -1,40 +1,10 @@
-import {useEffect, useState} from 'react';
+import { useWindowContext } from '../../../context/windowContext';
 import { HightlightedProduct_T } from '../../../types/pages/home/HIghlightedProduct_T';
+import { Link } from 'react-router';
 
 
 const HighlightedProduct = ({product} : {product: HightlightedProduct_T}) => {
-    // {/* Logic to get card width and set circles width based on that */}
-    const [width, setWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        handleWidth();
-        window.addEventListener('resize', handleWidth)
-
-        return (() => {
-            window.removeEventListener('resize', handleWidth)
-        })
-    }, []);
-
-    const handleWidth = () => {
-        setWidth(window.innerWidth);
-    }
-
-    const media = (function detectMedia() {
-        let media = ""
-        if (width < 768) {
-            media = 'mobile';
-        } else if (width < 1024) {
-            media = "tablet";
-        } else if (width < 1280) {
-            media = "laptop"
-        } else if (width < 1440) {
-            media = "desktop"
-        } else {
-            media = "wide"
-        }
-        return media;
-    })();
-
+    const {media} = useWindowContext();
 
     return (
         <article id='highlightedProductCard' className='py-14 bg-peru rounded-md overflow-hidden xl:flex xl:pb-0'>
@@ -82,9 +52,9 @@ const HighlightedProduct = ({product} : {product: HightlightedProduct_T}) => {
                         {product.description}
                     </p>
                     {/* button */}
-                    <button className='z-20 px-[25px] py-[16px] font-bold tracking-[1px] bg-black text-white border-[1px] border-black hover:bg-white hover:text-black'>
+                    <Link to={product.productUrl} className='z-20 px-[25px] py-[16px] font-bold tracking-[1px] bg-black text-white border-[1px] border-black hover:bg-white hover:text-black'>
                         SEE PRODUCT
-                    </button>
+                    </Link>
                 </div>
         </article>
     )

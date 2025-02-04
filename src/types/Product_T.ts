@@ -8,18 +8,17 @@ export type Product_T = {
         mobileUrl:          string;
         tabletUrl:          string;
         desktopUrl:         string;
-        detaileldImages: {
-            mobile:         string[];
-            tablet:         string[];
-            desktop:        string[];
+        detailedImages: {
+            mobileImages:         string[];
+            tabletImages:         string[];
+            desktopImages:        string[];
         }
     }
     price:                  number;
-    // features:               string;
     boxContent:             BoxItems[];
     newProduct?:             boolean;
     // productUrl:             string;
-    // similarProducts:        SimilarProduct[];
+    similarProducts:        SimilarProduct[];
 }
 
 type BoxItems = {

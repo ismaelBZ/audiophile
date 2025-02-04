@@ -1,36 +1,9 @@
-import { useState, useEffect } from "react";
 import { SimilarProduct } from "./SimilarProduct";
 import { SimilarProduct as SimilarProduct_T } from "../../../types/Product_T";
+import { useWindowContext } from "../../../context/windowContext";
 
 export const SimilarProductList = ({similarProducts}: {similarProducts: SimilarProduct_T[]}) => {
-    const [width, setWidth] = useState(window.outerWidth);
-
-    useEffect(() => {
-        handleWidth();
-        window.addEventListener('resize', handleWidth)
-
-        return (() => window.removeEventListener('resize', handleWidth))
-    }, []);
-
-    const handleWidth = () => {
-        setWidth(window.outerWidth);
-    }
-
-    const media = (function detectMedia() {
-        let media = ""
-        if (width < 768) {
-            media = 'mobile';
-        } else if (width < 1024) {
-            media = "tablet";
-        } else if (width < 1280) {
-            media = "laptop"
-        } else if (width < 1440) {
-            media = "desktop"
-        } else {
-            media = "wide"
-        }
-        return media;
-    })();
+    const {media} = useWindowContext();
 
     return (
         <>
@@ -44,7 +17,8 @@ export const SimilarProductList = ({similarProducts}: {similarProducts: SimilarP
                                 imgUrl={media == "mobile" ? product.images.mobileUrl : 
                                     media == "tablet" ? product.images.tabletUrl 
                                     : product.images.desktopUrl
-                                } 
+                                }
+                                productUrl={product.productUrl} 
                             />
                         </li>
                     )

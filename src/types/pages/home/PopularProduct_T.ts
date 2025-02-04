@@ -5,4 +5,5 @@ export type PopularProduct_T = {
         tabletUrl:      string;
         desktopUrl:     string;
     }
+    productUrl:         string;
 }

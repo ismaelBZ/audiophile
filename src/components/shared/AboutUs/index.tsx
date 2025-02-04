@@ -1,28 +1,17 @@
-import {useEffect, useState, useContext} from "react";
-import { useSharedData} from "./../../../data/context/sharedData";
+import { useSharedData} from "../../../context/sharedContext";
+import { useWindowContext } from "../../../context/windowContext";
 
 const AboutUs = () => {
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const {aboutUs} = useSharedData();
-
-    useEffect(() => {
-        handleWindowProperties();
-        window.addEventListener('resize', handleWindowProperties);
-
-        return( () => window.removeEventListener('resize', handleWindowProperties));
-    }, [])
-
-    const handleWindowProperties = () => {
-        setWindowWidth(() => window.innerWidth);
-    }
+    const {width}   = useWindowContext();
 
     return (
         <div className="2xl:grid 2xl:grid-cols-2 2xl:justify-items-end 2xl:items-center">
             
             {/* Image */}
             <img className="mx-auto 2xl:order-2 2xl:mx-[unset] 2xl:max-h-[500px] 2xl:rounded-lg 3xl:max-h-[580px]" 
-                src={windowWidth < 560 ? aboutUs.imageGallery.mobileUrl 
-                    : windowWidth < 1280 ? aboutUs.imageGallery.tabletUrl 
+                src={width < 560 ? aboutUs.imageGallery.mobileUrl 
+                    : width < 1280 ? aboutUs.imageGallery.tabletUrl 
                     : aboutUs.imageGallery.desktopUrl
                 } 
                 alt="" 

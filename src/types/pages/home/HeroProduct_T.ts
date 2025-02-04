@@ -7,4 +7,5 @@ export type HeroProduct_T = {
         tabletUrl:   string;
         desktopUrl:  string;
     }
+    productUrl:      string;
 }

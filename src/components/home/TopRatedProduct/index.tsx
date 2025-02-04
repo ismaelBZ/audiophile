@@ -1,37 +1,25 @@
-import {useState, useEffect} from "react";
 import Button from "../../utils/buttons/Secondary";
 import { TopRatedProduct_T } from "../../../types/pages/home/TopRatedProduct_T";
+import { useWindowContext } from "../../../context/windowContext";
 
 const TopRatedProduct = ({product} : {product: TopRatedProduct_T}) => {
-
-    const [width, setWidth] = useState(window.innerWidth);
-    
-        useEffect(() => {
-                handleWidth();
-                window.addEventListener('resize', handleWidth)
+        const {width} = useWindowContext();
         
-                return (() => window.removeEventListener('resize', handleWidth))
-            }, []);
-    
-            const handleWidth = () => {
-                setWidth(window.innerWidth);
+        const media = (function detectMedia() {
+            let media = ""
+            if (width < 560) {
+                media = 'mobile';
+            } else if (width < 1024) {
+                media = "tablet";
+            } else if (width < 1280) {
+                media = "laptop"
+            } else if (width < 1440) {
+                media = "desktop"
+            } else {
+                media = "wide"
             }
-        
-            const media = (function detectMedia() {
-                let media = ""
-                if (width < 560) {
-                    media = 'mobile';
-                } else if (width < 1024) {
-                    media = "tablet";
-                } else if (width < 1280) {
-                    media = "laptop"
-                } else if (width < 1440) {
-                    media = "desktop"
-                } else {
-                    media = "wide"
-                }
-                return media;
-            })();
+            return media;
+        })();
         
     
     return (
@@ -52,7 +40,7 @@ const TopRatedProduct = ({product} : {product: TopRatedProduct_T}) => {
                 <h2 className="mb-7 font-bold text-2xl sm:text-[28px] tracking-[2px] uppercase">
                     {product.productName}
                 </h2>
-                <Button />
+                <Button to={product.productUrl} />
             </div>
         </div>
     )

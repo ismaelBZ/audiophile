@@ -1,5 +1,5 @@
 import CategoryCard from "./CategoryCard";
-import { useSharedData } from "../../../data/context/sharedData";
+import { useSharedData } from "../../../context/sharedContext";
 
 const CategoriesList = () => {
     const {categories} = useSharedData();
@@ -12,13 +12,13 @@ const CategoriesList = () => {
                     3xl:max-w-[1110px] 3xl:mx-auto"
             >
                 <li className="lg:grow">
-                    <CategoryCard name={categories.headphones.name} imgUrl={categories.headphones.imgUrl} />
+                    <CategoryCard to="/headphones" name={categories.headphones.name} imgUrl={categories.headphones.imgUrl} />
                 </li>
                 <li className="lg:grow">
-                    <CategoryCard name={categories.speakers.name} imgUrl={categories.speakers.imgUrl} />
+                    <CategoryCard to="/speakers" name={categories.speakers.name} imgUrl={categories.speakers.imgUrl} />
                 </li>
                 <li className="lg:grow">
-                    <CategoryCard name={categories.earphones.name} imgUrl={categories.earphones.imgUrl} />
+                    <CategoryCard to="/earphones" name={categories.earphones.name} imgUrl={categories.earphones.imgUrl} />
                 </li> 
             </ul>
         </nav>

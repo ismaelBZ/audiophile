@@ -1,9 +1,9 @@
 import { NavLink } from "react-router";
 import ArrowIcon from "./../../../assets/utils/buttons/shop-arrow.svg";
 
-const CategoryCard = ({name, imgUrl} : {name: string, imgUrl: string}) => {
+const CategoryCard = ({name, imgUrl, to=""} : {name: string, imgUrl: string, to: string}) => {
     return (
-        <NavLink to="/headphones">
+        <NavLink to={to}>
             <div className="relative max-w-[320px] mx-auto 2xl:max-w-[unset]">
                 {/* Image */}
                 <img className="mx-auto h-[104px] xl:h-[160px]" src={imgUrl} alt="" />

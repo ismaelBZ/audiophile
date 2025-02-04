@@ -1,23 +1,37 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
+import { useCartContext } from "../../../context/cartContext";
 import { Product_T } from "../../../types/Product_T";
-import { CartItem } from "../../../types/CartItem_T";
-import Button from "./../../utils/buttons/Primary";
+import { CartItem_T } from "../../../types/CartItem_T";
+import Button from "./../../utils/buttons/AddToCart";
 import { formatPrice } from "../../../Utils/utils";
 
 
 export const ProductDetailed = ({product} : {product: Product_T}) => {
-    // Object used to handle product in cart information
     const price = formatPrice(product.price);
-    const [cartItem, setCartItem] = useState<CartItem>({
-        thumbUrl: product.images.tabletUrl,
+    
+    const [cartItem, setCartItem] = useState<CartItem_T>({
+        thumbUrl: product.images.thumbUrl,
         thumbName: product.thumbName,
         price: product.price,
         priceFormatted: price,
         quantity: 0
-    }); 
-    
-    const [width, setWidth] = useState(window.innerWidth);
+    });
 
+    const {cartList, setCartList} = useCartContext();
+    
+    useEffect(() => {
+        setCartItem(
+            {
+                thumbUrl: product.images.thumbUrl,
+                thumbName: product.thumbName,
+                price: product.price,
+                priceFormatted: price,
+                quantity: 0
+            }
+        )
+    }, [product])
+
+    const [width, setWidth] = useState(window.innerWidth);
 
     useEffect(() => {
         handleWidth();
@@ -26,12 +40,16 @@ export const ProductDetailed = ({product} : {product: Product_T}) => {
         return (() => window.removeEventListener('resize', handleWidth))
     }, []);
 
-    const handleQuantity = (operation: 'increase' | 'decrease') => {
-        setCartItem(prev => ({
-            ...prev,
-            quantity: (operation == 'increase' ? prev.quantity + 1 
-                : prev.quantity > 0 ? prev.quantity - 1 : 0)  
-        }));
+    const handleCartList = () => {
+        setCartList((prev) => {
+            if (prev == null) {
+                return new Array(1).fill(cartItem);
+            } else {
+                return [
+                    ...prev, cartItem
+                ]
+            }
+        })
     }
 
     const handleWidth = () => {
@@ -54,9 +72,20 @@ export const ProductDetailed = ({product} : {product: Product_T}) => {
         return media;
     })();
 
+    const handleQuantity = (operation: 'increase' | 'decrease') => {
+        setCartItem(prev => ({
+            ...prev,
+            quantity: (operation == 'increase' ? prev.quantity + 1 
+                : prev.quantity > 0 ? prev.quantity - 1 : 0)  
+        }));
+    }
+
+    console.log(cartList);
+    console.log(cartItem);
+
     return (
         <div className="flex flex-col gap-[88px]">
-            {/* Image, isNew, title, description, price, quantity, add button */}
+            {/* Image, isNew, title, description, price, quantity, add BUTTON */}
             <div className="flex flex-col gap-6 lg:grid lg:grid-cols-2 lg:items-center">
                 {/* Image */}
                     <img className="max-h-[350px] object-cover rounded-lg 
@@ -88,7 +117,7 @@ export const ProductDetailed = ({product} : {product: Product_T}) => {
                     </p>
                     {/* Price */}
                     <p className="font-bold text-[19px] tracking-[1.3px]">{price}</p>
-                    {/* Quantity */}
+                    {/* Quantity & ADD BUTTON */}
                     <div className="flex gap-4">
                         <div className="w-fit flex flex-row gap-2 items-center bg-ice ">
                             {/* Decrease Button */}
@@ -110,7 +139,7 @@ export const ProductDetailed = ({product} : {product: Product_T}) => {
                                 +
                             </button>
                         </div>
-                        <Button>Add to Cart</Button>
+                        <Button onClick={handleCartList}>Add to Cart</Button>
                     </div>
                 </div>
             </div>
@@ -159,24 +188,24 @@ export const ProductDetailed = ({product} : {product: Product_T}) => {
                 <li className="md:order-1 md:row-start-1 md:row-end-2">
                     <img 
                         className="max-h-[500px] w-full object-cover rounded-lg 2xl:max-h-[280px]" 
-                        src={media== "mobile" ? product.images.detaileldImages.mobile[0] 
-                            : media == "tablet" ? product.images.detaileldImages.tablet[0] 
-                            : product.images.detaileldImages.desktop[0]} 
+                        src={media== "mobile" ? product.images.detailedImages.mobileImages[0] 
+                            : media == "tablet" ? product.images.detailedImages.tabletImages[0] 
+                            : product.images.detailedImages.desktopImages[0]} 
                         alt="Description of the product details that can be seen in the image." />
                 </li>
                 <li className="md:order-3 md:row-start-2 md:row-end-3 ">
                     <img 
                         className="max-h-[500px] w-full object-cover rounded-lg 2xl:max-h-[280px]" 
-                        src={media== "mobile" ? product.images.detaileldImages.mobile[1] 
-                        : media == "tablet" ? product.images.detaileldImages.tablet[1] 
-                        : product.images.detaileldImages.desktop[1]} 
+                        src={media== "mobile" ? product.images.detailedImages.mobileImages[1] 
+                        : media == "tablet" ? product.images.detailedImages.tabletImages[1] 
+                        : product.images.detailedImages.desktopImages[1]} 
                         alt="Description of the product details that can be seen in the image." />
                 </li >
                 <li className="md:order-2 md:row-start-1 md:row-end-3 ">
                     <img className="max-h-[500px] w-full object-cover rounded-lg md:max-h-[unset] md:h-full 2xl:max" 
-                    src={media== "mobile" ? product.images.detaileldImages.mobile[2] 
-                    : media == "tablet" ? product.images.detaileldImages.tablet[2] 
-                    : product.images.detaileldImages.desktop[2]} 
+                    src={media== "mobile" ? product.images.detailedImages.mobileImages[2] 
+                    : media == "tablet" ? product.images.detailedImages.tabletImages[2] 
+                    : product.images.detailedImages.desktopImages[2]} 
                     alt="Description of the product details that can be seen in the image." />
                 </li>
             </ul>       
@@ -184,4 +213,4 @@ export const ProductDetailed = ({product} : {product: Product_T}) => {
     )
 }
 
-export default ProductDetailed
+export default ProductDetailed;

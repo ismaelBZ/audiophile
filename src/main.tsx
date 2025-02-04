@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from "react-router";
+import { AppProvider } from './context/AppProvider.tsx';
 import Home from "./pages/Home.tsx";
 import Headphones from "./pages/Headphones.tsx";
 import Speakers from "./pages/Speakers.tsx";
@@ -9,9 +10,7 @@ import Product from './pages/Product.tsx';
 import Checkout from './pages/Checkout.tsx';
 import './index.css';
 
-import { SharedContext } from './data/context/sharedData.tsx';
-
-const sharedData = {
+const mockData = {
     categories: {
         headphones: {
             name: "headphones",
@@ -39,20 +38,38 @@ const sharedData = {
     }
 }
 
+const data = async () => {
+    const categoriesResponse = await fetch("http://localhost:3000/categories");
+    const categories = await categoriesResponse.json();
+    const aboutUsPromisse = await fetch("http://localhost:3000/about-us");
+    const aboutUs = await aboutUsPromisse.json();
+    
+    return {
+        categories,
+        aboutUs
+    }
+}   
+
+const {categories, aboutUs} = await data();
+
+const sharedData = {
+    categories: categories,
+    aboutUs: aboutUs
+}
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <SharedContext.Provider value={sharedData}>
+        <AppProvider sharedData={sharedData}>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/headphones' element={<Headphones />} />
-                    <Route path='/speakers' element={<Speakers />} />
-                    <Route path='/earphones' element={<Earphones />} />
-                    <Route path="/product" element={<Product />} /> 
-                    <Route path="/checkout" element={<Checkout />} /> 
+                        <Route path='/' element={<Home />} />
+                        <Route path='/headphones' element={<Headphones />} />
+                        <Route path='/speakers' element={<Speakers />} />
+                        <Route path='/earphones' element={<Earphones />} />
+                        <Route path="/:category/:id" element={<Product />} />
+                        <Route path="/checkout" element={<Checkout />} /> 
                 </Routes>
             </BrowserRouter>
-        </SharedContext.Provider>
+        </AppProvider>
     </StrictMode>
 )

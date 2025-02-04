@@ -7,7 +7,7 @@ import instagramIcon from "./../../../assets/footer/icon-instagram.svg"
 const Footer = () => {
     return (
         <div className="bg-shadow">
-            <footer className="px-6 pb-10 flex flex-col gap-[48px] items-center text-white
+            <footer className="px-6 pb-10 flex flex-col gap-[48px] items-center
                     md:px-10 lg:px-14
                     xl:px-20
                     2xl:max-w-[1110px] 2xl:mx-auto 2xl:px-0
@@ -23,16 +23,16 @@ const Footer = () => {
                 <nav>
                     <ul className="flex flex-col gap-4">
                         <li className="text-center">
-                            <NavLink className="font-bold text-sm tracking-[2px] uppercase" to="/">Home</NavLink>
+                            <NavLink className="font-bold text-sm text-white tracking-[2px] uppercase" to="/">Home</NavLink>
                         </li>
                         <li className="text-center">
-                            <NavLink className="font-bold text-sm tracking-[2px] uppercase" to="/Headphones">Headphones</NavLink>
+                            <NavLink className="font-bold text-sm text-white tracking-[2px] uppercase" to="/headphones">Headphones</NavLink>
                         </li>
                         <li className="text-center">
-                            <NavLink className="font-bold text-sm tracking-[2px] uppercase" to="/Speakers">Speakers</NavLink>
+                            <NavLink className="font-bold text-sm text-white tracking-[2px] uppercase" to="/speakers">Speakers</NavLink>
                         </li>
                         <li className="text-center">
-                            <NavLink className="font-bold text-sm tracking-[2px] uppercase" to="/Earphones">Earphones</NavLink>
+                            <NavLink className="font-bold text-sm text-white tracking-[2px] uppercase" to="/earphones">Earphones</NavLink>
                         </li>
                     </ul>
                 </nav>

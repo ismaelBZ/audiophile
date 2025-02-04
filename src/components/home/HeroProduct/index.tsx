@@ -1,36 +1,9 @@
-import {useState, useEffect} from "react";
 import Button from "../../utils/buttons/Primary";
 import { HeroProduct_T } from "../../../types/pages/home/HeroProduct_T";
+import { useWindowContext } from "../../../context/windowContext";
 
 const HeroProduct = ({product}: {product: HeroProduct_T}) => {
-    const [width, setWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-            handleWidth();
-            window.addEventListener('resize', handleWidth)
-    
-            return (() => window.removeEventListener('resize', handleWidth))
-        }, []);
-
-        const handleWidth = () => {
-            setWidth(window.innerWidth);
-        }
-    
-        const media = (function detectMedia() {
-            let media = ""
-            if (width < 768) {
-                media = 'mobile';
-            } else if (width < 1024) {
-                media = "tablet";
-            } else if (width < 1280) {
-                media = "laptop"
-            } else if (width < 1440) {
-                media = "desktop"
-            } else {
-                media = "wide"
-            }
-            return media;
-        })();
+    const {media} = useWindowContext();
     
     return (
         <div className="bg-shadow">
@@ -69,7 +42,7 @@ const HeroProduct = ({product}: {product: HeroProduct_T}) => {
                         {product.description}
                     </p>
                     
-                    <Button />
+                    <Button to={product.productUrl}/>
                 </div>
             </article>
         </div>

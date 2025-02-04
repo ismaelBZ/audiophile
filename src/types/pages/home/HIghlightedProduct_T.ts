@@ -7,4 +7,6 @@ export type HightlightedProduct_T = {
         desktopUrl:     string;
     },
     patternUrl:         string;
+    category:           string;
+    productUrl:         string;
 }

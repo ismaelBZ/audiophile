@@ -5,4 +5,5 @@ export type TopRatedProduct_T = {
         tabletUrl:      string;
         desktopUrl:     string;
     }
+    productUrl:         string;
 }

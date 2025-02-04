@@ -1,38 +1,9 @@
-import {useState, useEffect} from "react"
 import Button from "../../utils/buttons/Secondary";
 import { PopularProduct_T } from "../../../types/pages/home/PopularProduct_T";
+import { useWindowContext } from "../../../context/windowContext";
 
 const PopularProducts = ({product}: {product: PopularProduct_T}) => {
-    const [width, setWidth] = useState(window.innerWidth);
-    
-        useEffect(() => {
-                handleWidth();
-                window.addEventListener('resize', handleWidth)
-        
-                return (() => window.removeEventListener('resize', handleWidth))
-            }, []);
-    
-            const handleWidth = () => {
-                setWidth(window.innerWidth);
-            }
-        
-            const media = (function detectMedia() {
-                let media = ""
-                if (width < 768) {
-                    media = 'mobile';
-                } else if (width < 1024) {
-                    media = "tablet";
-                } else if (width < 1280) {
-                    media = "laptop"
-                } else if (width < 1440) {
-                    media = "desktop"
-                } else {
-                    media = "wide"
-                }
-                return media;
-            })();
-        
-
+    const {media} = useWindowContext();
     
     return (
         <div className="grid grid-cols-1 grid-rows-1 items-center ">
@@ -52,7 +23,7 @@ const PopularProducts = ({product}: {product: PopularProduct_T}) => {
                 </h2>
                 {/* button */}
                 <div className="origin-bottom-left scale-[.85] sm:scale-[unset]">
-                    <Button />
+                    <Button to={product.productUrl} />
                 </div>
             </div>
         </div>
