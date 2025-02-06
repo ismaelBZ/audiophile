@@ -35,7 +35,6 @@ export const CartCard = () => {
 
     return (
         <div className="w-[90%] max-w-[320px] mx-auto px-7 py-8 flex flex-col gap-8 bg-white rounded-lg md:w-[420px] ">
-
             {/* Cart Header */}
             <div className="flex justify-between">
                 <p className="uppercase font-bold text-[18px]">Cart <span>({cartList && cartList.length})</span></p>

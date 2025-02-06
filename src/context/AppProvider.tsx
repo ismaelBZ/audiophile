@@ -4,6 +4,7 @@ import { SharedData_T } from "../types/context/SharedData_T";
 import { CartContext } from "./cartContext";
 import { CartItem_T } from "../types/CartItem_T";
 import { WindowContext } from "./windowContext";
+import { NavegationHistoryContext } from "./navegationsHistoryContext";
 
 export const AppProvider = ({children, sharedData} : {children: React.ReactNode, sharedData: SharedData_T}) => {
     const [width, setWidth] = useState(window.innerWidth);                  // Window Context
@@ -11,6 +12,8 @@ export const AppProvider = ({children, sharedData} : {children: React.ReactNode,
     const [cartList, setCartList] = useState<CartItem_T[] | null>(null)     // CartList Context
     const [modalHeight, setModalHeight] = useState(0);                      // Cart List Context
     const [isShowingCart, setIsShowingCart] = useState(false);              // Cart List Context
+
+    const [navegationHistory, setNavegationHistory] = useState<string[]>(new Array())           // NavegationContext
 
 
     {/* Window Context */}
@@ -46,6 +49,7 @@ export const AppProvider = ({children, sharedData} : {children: React.ReactNode,
         getModalHeight();
         window.addEventListener('resize', getModalHeight); // handle background height
         window.addEventListener('click', closeCart);
+        document.documentElement.style.scrollbarGutter = "stable"
 
         if(isShowingCart) {
             document.body.style.position = "fixed"; // Turn body background fixed when cart is openned
@@ -71,21 +75,31 @@ export const AppProvider = ({children, sharedData} : {children: React.ReactNode,
     }
 
     const closeCart = (e: Event) => {
-        const cartBackground = document.getElementById("cartBackground")
+        const cartBackground = document.getElementById("cartBackground");
         if (e.target == cartBackground) {
             setIsShowingCart(false);
-            console.log('Target found.');
-        } else {
-            console.log("Not clicked on target.")
         }
+        return;
     }
 
+    const handleHistory = (url: string) => {
+        if (url == navegationHistory[navegationHistory.length - 1]) {
+            return;
+        } else {
+            setNavegationHistory((prev) => [...prev, url]); 
+        }
+        console.log(navegationHistory);
+    }
+
+    
     return (
         <>
             <SharedContext.Provider value={sharedData}>
                 <WindowContext.Provider value={{width, media}}>
                     <CartContext.Provider value={{cartList, setCartList, openCart, closeCart, isShowingCart, setIsShowingCart, modalHeight}}>
-                        {children}
+                        <NavegationHistoryContext.Provider value={{navegationHistory, setNavegationHistory, handleHistory}}>
+                            {children}
+                        </NavegationHistoryContext.Provider>
                     </CartContext.Provider>
                 </WindowContext.Provider>
             </SharedContext.Provider>

@@ -17,7 +17,7 @@ export type Product_T = {
     price:                  number;
     boxContent:             BoxItems[];
     newProduct?:             boolean;
-    // productUrl:             string;
+    productUrl:             string;
     similarProducts:        SimilarProduct[];
 }
 

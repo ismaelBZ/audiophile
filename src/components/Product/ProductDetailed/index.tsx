@@ -80,8 +80,6 @@ export const ProductDetailed = ({product} : {product: Product_T}) => {
         }));
     }
 
-    console.log(cartList);
-    console.log(cartItem);
 
     return (
         <div className="flex flex-col gap-[88px]">

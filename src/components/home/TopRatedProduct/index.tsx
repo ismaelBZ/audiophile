@@ -1,9 +1,11 @@
 import Button from "../../utils/buttons/Secondary";
 import { TopRatedProduct_T } from "../../../types/pages/home/TopRatedProduct_T";
 import { useWindowContext } from "../../../context/windowContext";
+import { useNavegationHistoryContext } from "../../../context/navegationsHistoryContext";
 
 const TopRatedProduct = ({product} : {product: TopRatedProduct_T}) => {
         const {width} = useWindowContext();
+        const {handleHistory} = useNavegationHistoryContext();
         
         const media = (function detectMedia() {
             let media = ""
@@ -40,7 +42,7 @@ const TopRatedProduct = ({product} : {product: TopRatedProduct_T}) => {
                 <h2 className="mb-7 font-bold text-2xl sm:text-[28px] tracking-[2px] uppercase">
                     {product.productName}
                 </h2>
-                <Button to={product.productUrl} />
+                <Button to={product.productUrl} onClick={() => handleHistory("/")} />
             </div>
         </div>
     )

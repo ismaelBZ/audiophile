@@ -9,7 +9,7 @@ const CategoriesList = () => {
             <ul className="flex flex-col gap-5
                     lg:flex-row lg:gap-3
                     2xl:gap-8
-                    3xl:max-w-[1110px] 3xl:mx-auto"
+                    2xl:max-w-[1110px] 2xl:mx-auto"
             >
                 <li className="lg:grow">
                     <CategoryCard to="/headphones" name={categories.headphones.name} imgUrl={categories.headphones.imgUrl} />

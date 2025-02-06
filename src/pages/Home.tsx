@@ -6,8 +6,6 @@ import HighlightedProduct from "../components/Home/HighlightedProduct";
 import PopularProducts from "../components/Home/PopularProducts";
 import TopRatedProduct from "../components/Home/TopRatedProduct";
 import AboutUs from "../components/shared/AboutUs";
-import Cart from "../components/shared/Cart";
-import { useCartContext } from "../context/cartContext";
 
 
 const mockData = {
@@ -58,24 +56,16 @@ const fecthData =  async () => {
 const data = await fecthData();
 
 const Home = () => {
-    const {isShowingCart} = useCartContext();
-
     return (
-        <div className='mx-6 md:mx-10 lg:mx-14 xl:mx-20'>
+        <div className='mx-6 md:mx-10 lg:mx-14 xl:mx-20'
+        >
         {/* General app margins */}
             
             {/* HEADER */}
-            <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20 absolute w-full">
+            <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20 absolute w-svw">
                 {/* Change the bg-color when is in home */}
                 <Header isInHome={true} />
             </div>
-
-            {/* CART */}
-            {isShowingCart &&
-                <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20">
-                    <Cart />
-                </div>
-            }
 
             {/* MAIN */}
             <main>

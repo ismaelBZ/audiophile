@@ -7,7 +7,6 @@ import AboutUs from "../components/shared/AboutUs";
 import GoBack from "../components/utils/buttons/GoBack";
 import CategoriesList from "../components/shared/CategoriesList";
 import { SimilarProductList } from "../components/Product/SimilarProductList";
-import Cart from "../components/shared/Cart";
 import { Product_T } from "../types/Product_T";
 
 
@@ -108,11 +107,6 @@ const Product = () => {
                 <Header isInHome={false} />
             </div>
 
-             {/* CART */}
-            <div className="-mx-6">
-                <Cart />
-            </div>
-
             {/* Go Back Button */}
             <GoBack />
 
@@ -122,13 +116,15 @@ const Product = () => {
                 {data &&
                     <>
                         {/* Product Detailed Card Component */}
-                        <div className="2xl:max-w-[1110px] 2xl:mx-auto">
-                            <ProductDetailed product={data} />
+                        <div className="2xl:w-lvw 2xl:-mx-20">
+                            <div className="2xl:max-w-[1110px] 2xl:mx-auto">
+                                <ProductDetailed product={data} />
+                            </div>
                         </div>
 
                         {/* Similar Products List */}
                         <div className="my-32 2xl:max-w-[1110px] 2xl:mx-auto">
-                            <SimilarProductList similarProducts={data.similarProducts}/>
+                            <SimilarProductList similarProducts={data.similarProducts} historyUrl={data.productUrl}/>
                         </div>
                     </>
                 }

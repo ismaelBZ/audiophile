@@ -1,13 +1,15 @@
 import Button from "../../utils/buttons/Primary";
 import { HeroProduct_T } from "../../../types/pages/home/HeroProduct_T";
 import { useWindowContext } from "../../../context/windowContext";
-
+import { useNavegationHistoryContext } from "../../../context/navegationsHistoryContext";
+0
 const HeroProduct = ({product}: {product: HeroProduct_T}) => {
     const {media} = useWindowContext();
+    const {handleHistory} = useNavegationHistoryContext();
     
     return (
-        <div className="bg-shadow">
-            <article className="grid items-center xl:grid-cols-2 xl:max-w-[1280px] xl:mx-auto ">
+        <div className="bg-shadow w-lvw max-w-full px-6 md:px-10 pg:mx-14 xl:px-20">
+            <article className="grid items-center xl:pt-6 xl:pb-10 2xl:py-0 xl:grid-cols-2 xl:max-w-[1280px] xl:mx-auto ">
                 {/* Image */}
                 <img className="col-start-1 row-start-1 
                         md:max-h-[800px] md:w-full md:object-cover 
@@ -42,7 +44,7 @@ const HeroProduct = ({product}: {product: HeroProduct_T}) => {
                         {product.description}
                     </p>
                     
-                    <Button to={product.productUrl}/>
+                    <Button to={product.productUrl} onClick={() => handleHistory("/")} />
                 </div>
             </article>
         </div>

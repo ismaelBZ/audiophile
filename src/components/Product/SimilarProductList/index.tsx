@@ -2,7 +2,7 @@ import { SimilarProduct } from "./SimilarProduct";
 import { SimilarProduct as SimilarProduct_T } from "../../../types/Product_T";
 import { useWindowContext } from "../../../context/windowContext";
 
-export const SimilarProductList = ({similarProducts}: {similarProducts: SimilarProduct_T[]}) => {
+export const SimilarProductList = ({similarProducts, historyUrl}: {similarProducts: SimilarProduct_T[], historyUrl: string}) => {
     const {media} = useWindowContext();
 
     return (
@@ -18,7 +18,8 @@ export const SimilarProductList = ({similarProducts}: {similarProducts: SimilarP
                                     media == "tablet" ? product.images.tabletUrl 
                                     : product.images.desktopUrl
                                 }
-                                productUrl={product.productUrl} 
+                                productUrl={product.productUrl}
+                                historyUrl={historyUrl}
                             />
                         </li>
                     )

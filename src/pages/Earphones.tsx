@@ -58,7 +58,8 @@ const Earphones = () => {
 
             {/* HEADER */}
             <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20">
-                <Header isInHome={false} categorie="earphones"/>
+                <Header isInHome={false}/>
+                <p className="p-8 lg:p-24 font-bold tracking-[2px] text-[28px] text-white text-center uppercase bg-black">earphones</p>
             </div>
 
 
@@ -66,20 +67,20 @@ const Earphones = () => {
             <main className="pt-16 pb-32 flex flex-col gap-32">
 
                 {/* Products list */}
-                <ul className="flex flex-col gap-28 sm:gap-32 
+                <ul className="flex flex-col gap-28 sm:gap-32 3xl:w-lvw 3xl:-mx-20
                 ">
                     {/* If it's even reverse else (is's odd) normal */}
                     {data.map((product: ProductCard_T, index: number) => {
                         if (index % 2 == 0) {
                             return (
                                 <li key={index}>
-                                    <ProductCard product={product} reverse/>
+                                    <ProductCard product={product} reverse historyUrl="/earphones"/>
                                 </li>
                             );
                         } else {
                             return (
                                 <li key={index}>
-                                    <ProductCard product={product}/>
+                                    <ProductCard product={product} historyUrl="/earphones" />
                                 </li>
                             )
 

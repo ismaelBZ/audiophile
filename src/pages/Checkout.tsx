@@ -4,12 +4,13 @@ import Footer from "../components/shared/Footer";
 import GoBack from "../components/utils/buttons/GoBack";
 import Button from "./../components/utils/buttons/Primary";
 import CheckoutModal from '../components/Checkout/Modal';
-import { CartItem } from '../types/CartItem_T';
+import { CartItem_T } from '../types/CartItem_T';
 import PaymentResume from '../Utils/PaymentResume';
 import { formatPrice } from '../Utils/utils';
+import { useNavegationHistoryContext } from '../context/navegationsHistoryContext';
 
 // Cart List Array comes from cart;
-const cartList: CartItem[] = [
+const cartList: CartItem_T[] = [
     {
         thumbUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Products/Headphones/X99%20Mark%20II/thumb.png?updatedAt=1737456762936",
         thumbName: "XX99 MK II",
@@ -35,7 +36,7 @@ const cartList: CartItem[] = [
 
 const Checkout = () => {
     const [eMoney, setEMoney] = useState(true);
-    
+    const {history} = useNavegationHistoryContext()
     const paymentResume = new PaymentResume(cartList);
 
     const handleSubmit = () => { }
@@ -48,7 +49,7 @@ const Checkout = () => {
                 <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20">
                     <Header isInHome={false} />
                 </div>
-                <GoBack />
+                <GoBack link={history[history.length - 1]}/>
 
                 <CheckoutModal cartList={cartList}/>
 
