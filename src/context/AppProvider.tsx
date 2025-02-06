@@ -13,7 +13,7 @@ export const AppProvider = ({children, sharedData} : {children: React.ReactNode,
     const [modalHeight, setModalHeight] = useState(0);                      // Cart List Context
     const [isShowingCart, setIsShowingCart] = useState(false);              // Cart List Context
 
-    const [navegationHistory, setNavegationHistory] = useState<string[]>(new Array())           // NavegationContext
+    const [navegationHistory, setNavegationHistory] = useState<string[]>(new Array("/"))           // NavegationContext
 
 
     {/* Window Context */}
@@ -83,14 +83,22 @@ export const AppProvider = ({children, sharedData} : {children: React.ReactNode,
     }
 
     const handleHistory = (url: string) => {
-        if (url == navegationHistory[navegationHistory.length - 1]) {
-            return;
+        setNavegationHistory((prev) => {
+            if (url == prev[prev.length - 1]) {
+                return prev;
+        } else 
+            if (prev.length <= 30) {
+                const newHistory = [...prev, url]
+                return newHistory;
         } else {
-            setNavegationHistory((prev) => [...prev, url]); 
+            let newHistory = prev.slice(1);
+            newHistory = [...newHistory, url];
+            return newHistory
         }
-        console.log(navegationHistory);
-    }
-
+    }); 
+}
+    
+    
     
     return (
         <>

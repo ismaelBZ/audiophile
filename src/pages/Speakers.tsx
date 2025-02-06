@@ -75,13 +75,13 @@ const Speakers = () => {
                         if (index % 2 == 0) {
                             return (
                                 <li key={index}>
-                                    <ProductCard product={product} reverse historyUrl="/speakers" />
+                                    <ProductCard product={product} reverse />
                                 </li>
                             );
                         } else {
                             return (
                                 <li key={index}>
-                                    <ProductCard product={product} historyUrl="/speakers"/>
+                                    <ProductCard product={product} />
                                 </li>
                             )
 

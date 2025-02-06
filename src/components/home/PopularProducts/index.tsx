@@ -1,11 +1,9 @@
 import Button from "../../utils/buttons/Secondary";
 import { PopularProduct_T } from "../../../types/pages/home/PopularProduct_T";
 import { useWindowContext } from "../../../context/windowContext";
-import { useNavegationHistoryContext } from "../../../context/navegationsHistoryContext";
 
 const PopularProducts = ({product}: {product: PopularProduct_T}) => {
     const {media} = useWindowContext();
-    const {handleHistory} = useNavegationHistoryContext();
     
     return (
         <div className="grid grid-cols-1 grid-rows-1 items-center ">
@@ -25,7 +23,7 @@ const PopularProducts = ({product}: {product: PopularProduct_T}) => {
                 </h2>
                 {/* button */}
                 <div className="origin-bottom-left scale-[.85] sm:scale-[unset]">
-                    <Button to={product.productUrl} onClick={() => handleHistory("/")}/>
+                    <Button to={product.productUrl} />
                 </div>
             </div>
         </div>

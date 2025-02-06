@@ -1,14 +1,10 @@
 import { ProductCard_T } from '../../../types/pages/productCard/ProductCard_T';
 import Button from "./../../utils/buttons/Primary";
 import { useWindowContext } from '../../../context/windowContext';
-import { useNavegationHistoryContext } from '../../../context/navegationsHistoryContext';
 
-const ProductCard = ({reverse, product, historyUrl} : {reverse?: boolean, product: ProductCard_T, historyUrl: string}) => {
+const ProductCard = ({reverse, product} : {reverse?: boolean, product: ProductCard_T}) => {
     const {width} = useWindowContext();
-    const {handleHistory, navegationHistory} = useNavegationHistoryContext();
     const xlFlexDirection = reverse ? "xl:flex-row-reverse" : "xl:flex-row"
-    // console.log("historyUrl: " + historyUrl);
-    console.log("navegationHistory: " + navegationHistory);
 
     const imageSrcSet = () => {
         if (width < 560) {

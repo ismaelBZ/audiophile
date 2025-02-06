@@ -36,7 +36,6 @@ const cartList: CartItem_T[] = [
 
 const Checkout = () => {
     const [eMoney, setEMoney] = useState(true);
-    const {history} = useNavegationHistoryContext()
     const paymentResume = new PaymentResume(cartList);
 
     const handleSubmit = () => { }
@@ -49,7 +48,7 @@ const Checkout = () => {
                 <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20">
                     <Header isInHome={false} />
                 </div>
-                <GoBack link={history[history.length - 1]}/>
+                <GoBack />
 
                 <CheckoutModal cartList={cartList}/>
 

@@ -1,4 +1,3 @@
-import { useNavegationHistoryContext } from '../../../context/navegationsHistoryContext';
 import { useWindowContext } from '../../../context/windowContext';
 import { HightlightedProduct_T } from '../../../types/pages/home/HIghlightedProduct_T';
 import { Link } from 'react-router';
@@ -6,7 +5,6 @@ import { Link } from 'react-router';
 
 const HighlightedProduct = ({product} : {product: HightlightedProduct_T}) => {
     const {media} = useWindowContext();
-    const {handleHistory} = useNavegationHistoryContext();
 
     return (
         <article id='highlightedProductCard' className='py-14 bg-peru rounded-md overflow-hidden xl:flex xl:pb-0'>
@@ -56,7 +54,6 @@ const HighlightedProduct = ({product} : {product: HightlightedProduct_T}) => {
                     {/* button */}
                     <Link 
                         to={product.productUrl} 
-                        onClick={() => handleHistory("/")}
                         className='z-20 px-[25px] py-[16px] font-bold tracking-[1px] bg-black text-white border-[1px] border-black hover:bg-white hover:text-black'
                     >
                         SEE PRODUCT

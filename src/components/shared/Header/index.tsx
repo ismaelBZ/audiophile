@@ -4,12 +4,14 @@ import cartIcon from "./../../../assets/header/icon-cart.svg"
 import { useCartContext } from "../../../context/cartContext";
 import Cart from "../Cart";
 import { NavLink, useLocation } from "react-router";
+import { useNavegationHistoryContext } from "../../../context/navegationsHistoryContext";
 
 
 const Header = ({isInHome} : {isInHome: boolean}) => {
     const {openCart, isShowingCart} = useCartContext();
     const {pathname: urlHistory} = useLocation();
-    console.log(urlHistory);
+    const {handleHistory} = useNavegationHistoryContext();
+    handleHistory(urlHistory);
     
     return (
         <>

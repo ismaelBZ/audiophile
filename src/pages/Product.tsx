@@ -124,7 +124,7 @@ const Product = () => {
 
                         {/* Similar Products List */}
                         <div className="my-32 2xl:max-w-[1110px] 2xl:mx-auto">
-                            <SimilarProductList similarProducts={data.similarProducts} historyUrl={data.productUrl}/>
+                            <SimilarProductList similarProducts={data.similarProducts} />
                         </div>
                     </>
                 }

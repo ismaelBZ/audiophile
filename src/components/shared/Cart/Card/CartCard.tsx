@@ -83,7 +83,7 @@ export const CartCard = () => {
             </div>
             {/* Checkout button */}
             <div className="-mt-2">
-                <Button className="w-full">Checkout</Button>
+                <Button to='/checkout' className="w-full">Checkout</Button>
             </div>
 
         </div>
