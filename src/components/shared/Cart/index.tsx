@@ -10,7 +10,7 @@ const Cart = () => {
                 {/* Background modal */}
                 <div id="cartBackground"
                     className="col-start-1 col-end-1 row-start-1 row-end-1
-                        bg-green-600 w-full opacity-30
+                        bg-black w-full opacity-30
                     "
                     style={{height: modalHeight}}  
                 ></div>

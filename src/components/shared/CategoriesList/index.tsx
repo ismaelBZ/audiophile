@@ -1,7 +1,8 @@
 import CategoryCard from "./CategoryCard";
 import { useSharedData } from "../../../context/sharedContext";
+import { AnchorHTMLAttributes } from "react";
 
-const CategoriesList = () => {
+const CategoriesList = ({onClick} : {onClick?: () => void}) => {
     const {categories} = useSharedData();
     
     return (
@@ -12,13 +13,13 @@ const CategoriesList = () => {
                     2xl:max-w-[1110px] 2xl:mx-auto"
             >
                 <li className="lg:grow">
-                    <CategoryCard to="/headphones" name={categories.headphones.name} imgUrl={categories.headphones.imgUrl} />
+                    <CategoryCard to="/headphones" name={categories.headphones.name} imgUrl={categories.headphones.imgUrl} onClick={onClick}/>
                 </li>
                 <li className="lg:grow">
-                    <CategoryCard to="/speakers" name={categories.speakers.name} imgUrl={categories.speakers.imgUrl} />
+                    <CategoryCard to="/speakers" name={categories.speakers.name} imgUrl={categories.speakers.imgUrl} onClick={onClick}/>
                 </li>
                 <li className="lg:grow">
-                    <CategoryCard to="/earphones" name={categories.earphones.name} imgUrl={categories.earphones.imgUrl} />
+                    <CategoryCard to="/earphones" name={categories.earphones.name} imgUrl={categories.earphones.imgUrl} onClick={onClick}/>
                 </li> 
             </ul>
         </nav>

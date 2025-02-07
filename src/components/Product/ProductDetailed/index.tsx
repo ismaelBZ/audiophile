@@ -40,18 +40,6 @@ export const ProductDetailed = ({product} : {product: Product_T}) => {
         return (() => window.removeEventListener('resize', handleWidth))
     }, []);
 
-    const handleCartList = () => {
-        setCartList((prev) => {
-            if (prev == null) {
-                return new Array(1).fill(cartItem);
-            } else {
-                return [
-                    ...prev, cartItem
-                ]
-            }
-        })
-    }
-
     const handleWidth = () => {
         setWidth(window.innerWidth);
     }
@@ -78,6 +66,21 @@ export const ProductDetailed = ({product} : {product: Product_T}) => {
             quantity: (operation == 'increase' ? prev.quantity + 1 
                 : prev.quantity > 0 ? prev.quantity - 1 : 0)  
         }));
+    }
+
+    const handleCartList = () => {
+        if (cartItem.quantity < 1) {
+            return;
+        }
+        setCartList((prev) => {
+            if (prev == null) {
+                return new Array(1).fill(cartItem);
+            } else {
+                return [
+                    ...prev, cartItem
+                ]
+            }
+        })
     }
 
 

@@ -49,7 +49,7 @@ export const AppProvider = ({children, sharedData} : {children: React.ReactNode,
         getModalHeight();
         window.addEventListener('resize', getModalHeight); // handle background height
         window.addEventListener('click', closeCart);
-        document.documentElement.style.scrollbarGutter = "stable"
+        document.body.style.overflowY = "visible";
 
         if(isShowingCart) {
             document.body.style.position = "fixed"; // Turn body background fixed when cart is openned
@@ -59,6 +59,7 @@ export const AppProvider = ({children, sharedData} : {children: React.ReactNode,
             window.removeEventListener('resize', getModalHeight)
             window.removeEventListener('click', closeCart)
             document.body.style.position = "static";
+            document.documentElement.style.overflowY = "auto"
         }
     }, [isShowingCart]);
 

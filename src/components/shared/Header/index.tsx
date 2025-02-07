@@ -5,13 +5,23 @@ import { useCartContext } from "../../../context/cartContext";
 import Cart from "../Cart";
 import { NavLink, useLocation } from "react-router";
 import { useNavegationHistoryContext } from "../../../context/navegationsHistoryContext";
+import CategoriesList from "../CategoriesList";
+import { useEffect, useState } from "react";
 
 
 const Header = ({isInHome} : {isInHome: boolean}) => {
     const {openCart, isShowingCart} = useCartContext();
+    const [isMobileMenuVisible, setIsMobileMenuVisible] = useState<boolean | null>(null)
     const {pathname: urlHistory} = useLocation();
     const {handleHistory} = useNavegationHistoryContext();
     handleHistory(urlHistory);
+
+    useEffect(() => {
+        isMobileMenuVisible ? document.body.style.position = "fixed" : document.body.style.position = "static";
+    }, [isMobileMenuVisible])
+    
+    const handleMobileMenu = () => {
+    }
     
     return (
         <>
@@ -24,12 +34,12 @@ const Header = ({isInHome} : {isInHome: boolean}) => {
                         
                         {/* Menu icon */}
                         <div className="xl:hidden">
-                            <button aria-label='Open menu'>
+                            <button aria-label='Open menu' onClick={() => setIsMobileMenuVisible(!isMobileMenuVisible)}>
                                 <img src={menuIcon} alt="" />
                             </button>
                         </div>
                         
-                        <div className="flex items-center gap-24 2xl:gap-36 3xl:gap-x-48">
+                        <div className="flex items-center xl:gap-24 2xl:gap-36 3xl:gap-x-48">
                             {/* brand */}
                             <div>
                                 <img src={Logo} alt="" />
@@ -37,7 +47,7 @@ const Header = ({isInHome} : {isInHome: boolean}) => {
                             </div>
                             
                             {/* navlinks */}
-                            <ul className="hidden xl:flex gap-7">
+                            <ul className="hidden xl:flex md:gap-4 xl:gap-7">
                                     <li className="font-bold text-[13px] tracking-[2px] text-white uppercase">
                                         <NavLink to="/" >home</NavLink>
                                     </li>
@@ -59,6 +69,20 @@ const Header = ({isInHome} : {isInHome: boolean}) => {
                         </button>
                     </div>
                 </header>
+
+                {/* Hamburguer Menu */}
+                {isMobileMenuVisible && (
+                    <>
+                    <div className="fixed xl:hidden">
+                        <div className="relative">
+                            <div className="w-svw h-lvh bg-black opacity-30 menu-wrapper"></div>
+                            <div className="absolute top-0 z-10 w-svw px-6 py-8 bg-white menu-wrapper">
+                                <CategoriesList onClick={() => setIsMobileMenuVisible(false)}/>
+                            </div>
+                        </div>
+                    </div>
+                    </>
+                )}
 
                 {/* CART */}
                 {isShowingCart &&

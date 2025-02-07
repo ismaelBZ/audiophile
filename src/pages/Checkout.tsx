@@ -42,18 +42,18 @@ const Checkout = () => {
 
     return (
         <div className="bg-snow">
-            <div className="mx-6 md:mx-10 lg:mx-14 xl:mx-20">
+            <div className="mx-6 md:mx-10 lg:mx-14 xl:mx-20 ">
 
                 {/* HEADER  */}
-                <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20">
+                <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20 3xl:w-svw">
                     <Header isInHome={false} />
                 </div>
                 <GoBack />
 
-                <CheckoutModal cartList={cartList}/>
+                {/* <CheckoutModal cartList={cartList}/> */}
 
                 {/* MAIN */}
-                <main className="mb-24 flex flex-col gap-8">
+                <main className="mb-24 flex flex-col gap-8 ">
                     
                 <div className="xl:max-w-[1110px] xl:mx-auto xl:flex xl:gap-7 xl:items-start">
                     
@@ -282,7 +282,7 @@ const Checkout = () => {
 
 
                 {/* FOOTER */}
-                <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20">
+                <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20 3xl:w-svw">
                     <Footer />
                 </div>
             </div>
