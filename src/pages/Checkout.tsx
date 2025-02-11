@@ -2,12 +2,14 @@ import { useState } from 'react';
 import Header from "./../components/shared/Header";
 import Footer from "../components/shared/Footer";
 import GoBack from "../components/utils/buttons/GoBack";
-import Button from "./../components/utils/buttons/Primary";
 import CheckoutModal from '../components/Checkout/Modal';
 import { CartItem_T } from '../types/CartItem_T';
 import PaymentResume from '../Utils/PaymentResume';
 import { formatPrice } from '../Utils/utils';
-import { useNavegationHistoryContext } from '../context/navegationsHistoryContext';
+import { FieldValues, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { CheckoutSchema, CheckoutSchema_T } from '../types/Checkout_T';
+
 
 // Cart List Array comes from cart;
 const cartList: CartItem_T[] = [
@@ -34,12 +36,38 @@ const cartList: CartItem_T[] = [
     }
 ]
 
+
 const Checkout = () => {
+    const {
+            register, 
+            setError, 
+            reset, 
+            formState: { errors },
+            handleSubmit
+        } 
+    = useForm<CheckoutSchema_T>({resolver: zodResolver(CheckoutSchema)});
+    
+    // const [name, setName] = useState<string>();
+    // const [email, setEmail] = useState<string>();
+    // const [phone, setPhone] = useState<string>();
+    // const [address, setAddress] = useState<string>()
+    // const [isSubmiting, setIsSubmiting] = useState(false);
+    // const [errors, setErrors] = useState<string[]>([])
+    
     const [eMoney, setEMoney] = useState(true);
     const paymentResume = new PaymentResume(cartList);
+    
+    
+    const onSubmit = async (data: FieldValues) => { 
 
-    const handleSubmit = () => { }
+        //ToDo: Submit to Server
+        //...
+        await new Promise((result) => {setTimeout(result, 1000)});
 
+        reset();
+    }
+
+    
     return (
         <div className="bg-snow">
             <div className="mx-6 md:mx-10 lg:mx-14 xl:mx-20 ">
@@ -62,45 +90,59 @@ const Checkout = () => {
                         <h2 className="font-bold tracking-[1px] text-[28px] uppercase leading-[1]">Checkout</h2>
 
                         {/* Form */}
-                        <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
-                            <fieldset></fieldset>
+                        <form id="checkoutForm" className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
 
                             {/* Billing Details */}
                             <fieldset className="flex flex-col gap-6 lg:flex-row lg:flex-wrap lg:gap-x-4">
 
-                                <legend className="mb-4 font-bold text-[13px] tracking-[0.93px] uppercase text-peru">Billing Details</legend>
+                                <legend className="mb-4 pt-2 font-bold text-[13px] tracking-[0.93px] uppercase text-peru">Billing Details</legend>
 
                                 {/* Name */}
                                 <div className="flex flex-col gap-2 lg:w-[48%]">
-                                    <label className="font-bold text-[12px]" htmlFor="name">Name </label>
+                                    <div className="flex justify-between">
+                                        <label className="font-bold text-[12px]" htmlFor="name">Name </label>
+                                        {errors.name && <span className="text-red-500 text-[12px]">Wrong format</span>}
+                                    </div>
                                     <input
-                                        className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]"  
-                                        type="text" 
-                                        name="name" 
                                         id="name" 
-                                        placeholder="Alexei Ward" />
+                                        type="text" 
+                                        {...register( "name")}
+                                        className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]"  
+                                        placeholder="Alexei Ward" 
+                                    />
+                                    {errors.name && <p className="text-red-500 text-[12px]">{errors.name.message}</p>}
                                 </div>
 
                                 {/* Email */}
                                 <div className="flex flex-col gap-2 lg:w-[48%]">
-                                    <label className="font-bold text-[12px]" htmlFor="email">Email</label>
+                                    <div className='flex justify-between'>
+                                        <label className="font-bold text-[12px]" htmlFor="email">Email</label>
+                                        {errors.email && <span className="text-red-500 text-[12px]">Wrong format</span>}
+                                    </div>
                                     <input
-                                        className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]"  
-                                        type="email" 
-                                        name="email" 
                                         id="email" 
-                                        placeholder="alexei@mail.com" />
+                                        type="text" 
+                                        {...register("email")}
+                                        className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]"  
+                                        placeholder="alexei@mail.com" 
+                                    />
+                                    {errors.email && <p className="text-red-500 text-[12px]">{errors.email.message}</p>}
                                 </div>
 
                                 {/* Phone Number */}
                                 <div className="flex flex-col gap-2 lg:w-[48%]">
-                                    <label className="font-bold text-[12px]" htmlFor="phone">Phone Number</label>
+                                    <div className="flex justify-between">
+                                        <label className="font-bold text-[12px]" htmlFor="phone">Phone Number</label>
+                                        {errors.phone && <span className="text-red-500 text-[12px]">Wrong format</span>}
+                                    </div>
                                     <input
-                                        className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]" 
-                                        type="tel" 
-                                        name="phone" 
                                         id="phone" 
-                                        placeholder="+1 202-555-0136" />
+                                        type="tel"
+                                        {...register("phone")}
+                                        className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]" 
+                                        placeholder="+(01) 202-555-0136" 
+                                    />
+                                    {errors.phone && <p className="text-red-500 text-[12px]">{errors.phone.message}</p>}
                                 </div>
                             </fieldset>
 
@@ -111,50 +153,66 @@ const Checkout = () => {
 
                                 {/* Address */}
                                 <div className="flex flex-col gap-2 lg:w-[98%]">
-                                    <label className="font-bold text-[12px]" htmlFor="address">Your Address</label>
+                                    <div className="flex justify-between">
+                                        <label className="font-bold text-[12px]" htmlFor="address">Your Address</label>
+                                        {errors.address && <span className="text-red-500 text-[12px]">Wrong format</span>}
+                                    </div>
                                     <input 
-                                        className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]"
-                                        type="text" 
-                                        name="address" 
                                         id="address" 
+                                        type="text" 
+                                        {...register("address")}
+                                        className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]"
                                         placeholder="1137 Williams Avenue" 
                                     />
+                                    { errors.address && <p className="text-red-500 text-[12px]">{errors.address.message}</p>}
                                 </div>
 
                                 {/* Zip Code */}
                                 <div className="flex flex-col gap-2 lg:w-[48%]">
-                                    <label className="font-bold text-[12px]" htmlFor="zipCode">ZIP Code</label>
+                                    <div className="flex justify-between">
+                                        <label className="font-bold text-[12px]" htmlFor="zipCode">ZIP Code</label>
+                                        {errors.zipCode && <span className="text-red-500 text-[12px]">Wrong format</span>}
+                                    </div>
                                     <input 
-                                        className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]"
-                                        type="text" 
-                                        name="zipCode" 
                                         id="zipCode" 
+                                        type="text" 
+                                        {...register("zipCode")}
+                                        className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]"
                                         placeholder="10001" 
                                     />
+                                    {errors.zipCode && <p className="text-red-500 text-[12px]">{errors.zipCode.message}</p>}
                                 </div>
 
                                 {/* City */}
                                 <div className="flex flex-col gap-2 lg:w-[48%]">
-                                    <label className="font-bold text-[12px]" htmlFor="city">City</label>
+                                    <div className="flex justify-between">
+                                        <label className="font-bold text-[12px]" htmlFor="city">City</label>
+                                        {errors.city && <span className="text-red-500 text-[12px]">Wrong format</span>}
+                                    </div>
                                     <input 
-                                        className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]"
-                                        type="text" 
-                                        name="city" 
                                         id="city" 
+                                        type="text"
+                                        {...register("city")} 
+                                        className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]"
                                         placeholder="New York" 
                                     />
+                                    {errors.city && <p className="text-red-500 text-[12px]">{errors.city.message}</p>}
                                 </div>
 
                                 {/* Country */}
                                 <div className="flex flex-col gap-2 lg:w-[48%]">
-                                    <label className="font-bold text-[12px]" htmlFor="country">Country</label>
+                                    <div className="flex justify-between">
+                                        <label className="font-bold text-[12px]" htmlFor="country">Country</label>
+                                        {errors.country && <span className="text-red-500 text-[12px]">Wrong format</span>}
+                                    </div>
                                     <input 
-                                        className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]"
-                                        type="text" 
-                                        name="country" 
                                         id="country" 
+                                        type="text" 
+                                        {...register("country")}
+                                        className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]"
                                         placeholder="United States" 
                                     />
+                                    {errors.country && <p className="text-red-500 text-[12px]">{errors.country.message}</p>}
                                 </div>
                             </fieldset>
 
@@ -168,16 +226,22 @@ const Checkout = () => {
 
                                     {/* e-money */}
                                     <div className="flex gap-6 ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md font-bold text-[#a0a0a0] text-[14px] lg:w-[48%] lg:mr-2">
-                                        <input type="radio" name="paymentMethod" id="eMoney" value="eMoney" />
+                                        <input 
+                                            id="eMoney" 
+                                            type="radio" 
+                                            {...register("paymentMethod")}
+                                            value="eMoney" 
+                                            checked
+                                        />
                                         <label htmlFor="eMoney">e-Money</label>
                                     </div>
 
                                     {/* Cash on Delivery */}
                                     <div className="flex gap-6 ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md font-bold text-[#a0a0a0] text-[14px] lg:w-[48%] lg:mr-2">
                                         <input 
-                                            type="radio" 
-                                            name="paymentMethod" 
                                             id="cashOnDelivery" 
+                                            type="radio" 
+                                            {...register("paymentMethod")}
                                             value="OnDelivery" 
                                             />
                                         <label htmlFor="cashOnDelivery">Cash On Delivery</label>
@@ -190,26 +254,34 @@ const Checkout = () => {
 
                                     {/* Number */}
                                     <div className="flex flex-col gap-3 lg:w-[48%]">
-                                        <label className="font-bold text-[12px]" htmlFor="eMoneyNumber">e-Money Number</label>
+                                        <div className="flex justify-between">
+                                            <label className="font-bold text-[12px]" htmlFor="eMoneyNumber">e-Money Number</label>
+                                            {errors.eMoneyNumber && <span className="text-red-500 text-[12px]">Wrong format</span>}
+                                        </div>
                                         <input
-                                            className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]" 
-                                            type="text" 
-                                            name="eMoneyNumber" 
                                             id="eMoneyNumber" 
+                                            type="text"
+                                            {...register("eMoneyNumber")} 
+                                            className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]" 
                                             placeholder="238521993" 
                                         />
+                                        {errors.eMoneyNumber && <p className="text-red-500 text-[12px]">{errors.eMoneyNumber.message}</p>}
                                     </div>
 
                                     {/* Pin */}
                                     <div className="flex flex-col gap-3 lg:w-[48%]">
-                                        <label className="font-bold text-[12px]" htmlFor="eMoneyPin">e-Money Pin</label>
+                                        <div className="flex justify-between">
+                                            <label className="font-bold text-[12px]" htmlFor="eMoneyPin">e-Money Pin</label>
+                                            {errors.eMoneyPin && <span className="text-red-500 text-[12px]">Wrong format</span>}
+                                        </div>
                                         <input 
-                                            className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]"
-                                            type="text" 
-                                            name="eMoneyPin" 
                                             id="eMoneyPin" 
+                                            type="text" 
+                                            {...register("eMoneyPin")}
+                                            className="ps-6 py-4 border-[#cfcfcf] border-[1px] rounded-md placeholder-bold placeholder-[#a0a0a0] placeholder:font-bold placeholder:text-[14px] placeholder:[2px]"
                                             placeholder="6891" 
                                         />
+                                        {errors.eMoneyPin && <p className="text-red-500 text-[12px]">{errors.eMoneyPin.message}</p>}
                                     </div>
                                 </fieldset>
                                 }
@@ -273,7 +345,12 @@ const Checkout = () => {
                         </table>
 
                         {/* Continue & Pay Button */}
-                        <Button className='w-full'>Continue & Pay</Button>
+                        <button 
+                            type="submit" 
+                            form="checkoutForm"
+                            className='w-full px-[26px] py-[17px] font-bold text-[13px] tracking-[1px] bg-peru text-white hover:bg-sandy disabled:bg-sandy uppercase'>
+                                Continue & Pay
+                        </button>
                     </section>
                 </div>   
 
