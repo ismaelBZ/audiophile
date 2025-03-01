@@ -23,7 +23,9 @@ const ProductCard = ({reverse, product} : {reverse?: boolean, product: ProductCa
                 xl:gap-32 xl:max-w-[1110px] xl:mx-auto 
             `}>
                 {/* Image */}
-                <div className="bg-ice w-full rounded-lg md:max-h-[400px] md:flex md:items-center md:overflow-hidden xl:max-h-[unset] xl:grow xl:basis-7/12">
+                <div className="flex items-center w-full max-h-[400px] rounded-lg overflow-hidden bg-ice 
+                        xl:max-h-[unset] xl:grow xl:basis-7/12"
+                >
                     <img className="mx-auto md:max-h-[800px] xl:max-h-[400px] 3xl:max-h-[560px]" src={imageSrcSet()} alt="" />
                 </div>
 

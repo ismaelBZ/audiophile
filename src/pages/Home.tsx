@@ -8,44 +8,44 @@ import TopRatedProduct from "../components/Home/TopRatedProduct";
 import AboutUs from "../components/shared/AboutUs";
 
 
-const mockData = {
-    heroProduct: {
-        productName: "XX99 Mark II Headphones",
-        description: "Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.",
-        newProduct: true,
-        images: {
-            mobileUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/Hero/hero-mobile.jpg?updatedAt=1737574869545",
-            tabletUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/Hero/hero-tablet.jpg?updatedAt=1737574869478",
-            desktopUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/Hero/hero-desktop.jpg?updatedAt=1737574869498"
-        }
-    },
-    highlightedProduct: {
-        productName: "ZX9 SPEAKER",
-        description: "Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.",
-        images: {
-            mobileUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/hightlighted/highlighted-mobile.png?updatedAt=1737574969886",
-            tabletUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/hightlighted/hightlighted-tablet.png?updatedAt=1737574969735",
-            desktopUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/hightlighted/highlighted-desktop.png?updatedAt=1737574940509"
-        },
-        patternUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/hightlighted/pattern-circles.svg?updatedAt=1737605090450"
-    },
-    popularProduct: {
-        productName: "ZX7 SPEAKER",
-        images: {
-            mobileUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/Popular/popular-mobile.jpg?updatedAt=1737575161067",
-            tabletUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/Popular/popular-tablet.jpg?updatedAt=1737575130779",
-            desktopUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/Popular/popular-desktop.jpg?updatedAt=1737575159792"
-        }
-    }, 
-    topRatedProduct: {
-        productName: "YX1 EARPHONES",
-        images: {
-            mobileUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/top-rated/topRated-mobile.jpg?updatedAt=1737575234773",
-            tabletUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/top-rated/topRated-tablet.jpg?updatedAt=1737575235087",
-            desktopUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/top-rated/topRated-desktop.jpg?updatedAt=1737575234966"
-        }
-    }
-}
+// const mockData = {
+//     heroProduct: {
+//         productName: "XX99 Mark II Headphones",
+//         description: "Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.",
+//         newProduct: true,
+//         images: {
+//             mobileUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/Hero/hero-mobile.jpg?updatedAt=1737574869545",
+//             tabletUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/Hero/hero-tablet.jpg?updatedAt=1737574869478",
+//             desktopUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/Hero/hero-desktop.jpg?updatedAt=1737574869498"
+//         }
+//     },
+//     highlightedProduct: {
+//         productName: "ZX9 SPEAKER",
+//         description: "Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.",
+//         images: {
+//             mobileUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/hightlighted/highlighted-mobile.png?updatedAt=1737574969886",
+//             tabletUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/hightlighted/hightlighted-tablet.png?updatedAt=1737574969735",
+//             desktopUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/hightlighted/highlighted-desktop.png?updatedAt=1737574940509"
+//         },
+//         patternUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/hightlighted/pattern-circles.svg?updatedAt=1737605090450"
+//     },
+//     popularProduct: {
+//         productName: "ZX7 SPEAKER",
+//         images: {
+//             mobileUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/Popular/popular-mobile.jpg?updatedAt=1737575161067",
+//             tabletUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/Popular/popular-tablet.jpg?updatedAt=1737575130779",
+//             desktopUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/Popular/popular-desktop.jpg?updatedAt=1737575159792"
+//         }
+//     }, 
+//     topRatedProduct: {
+//         productName: "YX1 EARPHONES",
+//         images: {
+//             mobileUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/top-rated/topRated-mobile.jpg?updatedAt=1737575234773",
+//             tabletUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/top-rated/topRated-tablet.jpg?updatedAt=1737575235087",
+//             desktopUrl: "https://ik.imagekit.io/ismaelbz/frontendMentor/audiophile/Home/22-01-25/top-rated/topRated-desktop.jpg?updatedAt=1737575234966"
+//         }
+//     }
+// }
 
 const fecthData =  async () => {
     const request = await fetch("http://localhost:3000/home");
