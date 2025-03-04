@@ -17,8 +17,8 @@ export const  CheckoutSchema = z.object({
     city: z.string().min(3, "Please provide your city."),
     country: z.string().min(3, "Please provide your country."),
     paymentMethod: z.string(),
-    eMoneyNumber: z.string().length(9, "e-Money number must have 9 digits"),
-    eMoneyPin: z.string().length(4, "Pin must have 4 digits") 
+    eMoneyNumber: z.string().length(9, "e-Money number must have 9 digits").optional(),
+    eMoneyPin: z.string().length(4, "Pin must have 4 digits").optional()
 
 })
 

@@ -1,8 +1,48 @@
-import { useCartContext } from "../../../context/cartContext"
+// Hooks
+import { useState, useEffect } from "react";
+import { useStore } from "../../../stores/useStore";
+// Components
 import { CartCard } from "./Card/CartCard"
 
 const Cart = () => {
-    const {modalHeight} = useCartContext();
+    const [modalHeight, setModalHeight] = useState(0)
+    const close = useStore((state) => state.closeCart)
+    
+    useEffect(() => {
+        getModalHeight();
+        document.body.style.position = "fixed";
+        document.body.style.overflowY = "visible";
+        
+        window.addEventListener('resize', getModalHeight);
+        window.addEventListener('click', closeCart);
+        
+        return () => {
+            window.removeEventListener('click', closeCart)
+            window.removeEventListener('resize', getModalHeight)
+            document.body.style.position = "static";
+            document.body.style.overflowY = "auto";
+        }
+    }, [])
+
+
+    const getModalHeight = () => {
+        const header = document.querySelector('header');
+        const headerHeight = parseInt(window.getComputedStyle(header!, null).getPropertyValue('height'))
+        const windowHeight = window.innerHeight;
+        const modalHeight = windowHeight-headerHeight;
+        setModalHeight(modalHeight);
+    }
+
+
+    const closeCart = (e: Event) => {
+        const cartBackground = document.getElementById("cartBackground");
+        console.log("runned")
+        if (e.target == cartBackground) {
+            close();
+        }
+        return;
+    }
+
 
     return (
         <div className="fixed w-full z-30">

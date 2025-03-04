@@ -1,5 +1,5 @@
 import { CartItem } from "../types/CartItem_T";
-import { formatPrice } from "./utils";
+import { formatPrice } from "./formatPrice";
 
 export default class PaymentResume {
     private _total: number
@@ -21,19 +21,19 @@ export default class PaymentResume {
     }
 
     getTotal() {
-        return `$ ${formatPrice(this._total)}`;
+        return `${formatPrice(this._total)}`;
     }
 
     getShipping() {
-        return  `$ ${formatPrice(this._shipping)}`;
+        return  `${formatPrice(this._shipping)}`;
     }
 
     getVat() {
-        return `$ ${formatPrice(this._vat)}`;
+        return `${formatPrice(this._vat)}`;
     }
 
     getGrandTotal () {
-        return `$ ${formatPrice(this._grandTotal)}`
+        return `${formatPrice(this._grandTotal)}`
     };
     
 }

@@ -1,5 +1,5 @@
 import { Product_T } from "../types/Product_T";
-import { formatPrice } from "./utils";
+import { formatPrice } from "./formatPrice";
 
 export default class ProductDetailes {
     private _productName:       string;

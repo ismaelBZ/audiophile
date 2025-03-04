@@ -1,7 +1,7 @@
 import Button from "./../../utils/buttons/Primary";
 import CheckIcon from "./../../../assets/utils/checkout/orderOk.svg"
 import {CartItem} from "./../../../types/CartItem_T";
-import { formatPrice } from "../../../Utils/utils";
+import { formatPrice } from "../../../utils/formatPrice";
 
 // come from cart
 
