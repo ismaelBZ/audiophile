@@ -3,7 +3,8 @@ import queryClient from "../lib/queryClient";
 // Hooks
 import { useLocation } from "react-router";
 import { useStore } from "../stores/useStore";
-import { useProductQuery } from "../querys/useProductsQuery";
+import { useProductQuery } from "../hooks/querys/useProductsQuery";
+import { useLoad } from "../hooks/useLoad";
 // Components
 import Header from "../components/shared/Header";
 import Footer from "../components/shared/Footer";
@@ -16,10 +17,12 @@ import Loading from "../components/utils/loading";
 
 
 const Product = () => {
-    const { data, isLoading } = useProductQuery();
+    const { isLoading } = useProductQuery();
+    useLoad();
+    
     const {pathname: pathName} = useLocation();
-    const previousPath = useStore((state) => state.urlPath);
-    const setUrlPath = useStore((state) => state.setUrlPath);
+    const previousPath = useStore((state) => state.pathUrl);
+    const setUrlPath = useStore((state) => state.setPathUrl);
     
     if (pathName !== previousPath) {
         setUrlPath(pathName);
@@ -28,7 +31,6 @@ const Product = () => {
 
     return (
         <div className="mx-6 md:mx-10 lg:mx-14 xl:mx-20">
-            {/* General App Margins */}
 
             <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20">
                 <Header />
@@ -36,25 +38,19 @@ const Product = () => {
 
             <GoBack />
 
-            {isLoading ?
+            { isLoading ?
                 <Loading />
-                :
+            :
                 <main>
-                    {data &&
-                        <>
-                            {/* Product Detailed Card Component */}
-                            <div className="2xl:w-lvw 2xl:-mx-20">
-                                <div className="2xl:max-w-[1110px] 2xl:mx-auto">
-                                    <ProductDetailed product={data} />
-                                </div>
-                            </div>
+                    <div className="2xl:w-lvw 2xl:-mx-20">
+                        <div className="2xl:max-w-[1110px] 2xl:mx-auto">
+                            <ProductDetailed />
+                        </div>
+                    </div>
 
-                            {/* Similar Products List */}
-                            <div className="my-32 2xl:max-w-[1110px] 2xl:mx-auto">
-                                <SimilarProductList similarProducts={data.similarProducts} />
-                            </div>
-                        </>
-                    }
+                    <div className="my-32 2xl:max-w-[1110px] 2xl:mx-auto">
+                        <SimilarProductList />
+                    </div>
 
                     <div className="2xl:max-w-[1110px] 2xl:mx-auto">
                         <CategoriesList />

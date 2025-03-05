@@ -1,16 +1,21 @@
-import { useEffect, useState } from 'react';
+// Types
+import { CheckoutSchema, CheckoutSchema_T } from '../types/Checkout_T';
+// Hooks
+import { useStore } from '../stores/useStore';
+import { useForm, FieldValues } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useLoad } from '../hooks/useLoad';
+// Components
 import Header from "./../components/shared/Header";
 import Footer from "../components/shared/Footer";
 import GoBack from "../components/utils/buttons/GoBack";
 import PaymentResume from '../utils/PaymentResume';
-import { useForm, FieldValues } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { CheckoutSchema, CheckoutSchema_T } from '../types/Checkout_T';
-import { useStore } from '../stores/useStore';
 
 
 const Checkout = () => {
+    useLoad();
     const cartList = useStore((state) => state.cartList);
+    const clearCart = useStore((state) => state.clearCart);
     
     const {
         register, 
@@ -32,9 +37,13 @@ const Checkout = () => {
         };
 
     const onSubmit = async (data: FieldValues) => {
-        await new Promise((result) => {setTimeout(result, 1000)});
-        console.log(data)
-        reset();
+        try {
+            await new Promise((result) => {setTimeout(result, 1000)});
+            clearCart();
+            reset();
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     console.log("render");
@@ -385,7 +394,7 @@ const Checkout = () => {
                                 Summary
                             </h2>
                             
-                            <ul>
+                            <ul className="flex flex-col gap-[10px]">
                                 { cartList.map(( item, index ) => (
                                     <li key={index} className="flex items-center justify-between">
                                         <div className="flex items-center gap-3 sm:gap-4 md:gap-5">
@@ -462,6 +471,7 @@ const Checkout = () => {
                                 className='w-full px-[26px] py-[17px] font-bold text-[13px] tracking-[1px] text-white bg-peru 
                                     hover:bg-sandy disabled:bg-sandy uppercase
                                 '
+                                disabled={cartList.length < 1}
                                 >
                                     Continue & Pay
                             </button>

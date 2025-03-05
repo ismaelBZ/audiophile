@@ -36,7 +36,6 @@ const Cart = () => {
 
     const closeCart = (e: Event) => {
         const cartBackground = document.getElementById("cartBackground");
-        console.log("runned")
         if (e.target == cartBackground) {
             close();
         }
@@ -55,7 +54,7 @@ const Cart = () => {
                     style={{height: modalHeight}}  
                 ></div>
                 <div className="col-start-1 col-end-1 row-start-1 row-end-1 2xl:w-[1110px] 2xl:mx-auto">
-                    <div className="relative md:pr-10 xl:pr-20 2xl:p-0 2xl:float-right z-10">
+                    <div className="relative mt-[20px] md:pr-10 xl:pr-20 2xl:p-0 2xl:float-right z-10">
                         <CartCard />
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 // Hooks
-import { useHomeQuery } from "../querys/useHomeQuery";
+import { useHomeQuery } from "../hooks/querys/useHomeQuery";
+import { useLoad } from "../hooks/useLoad";
 // Components
 import Header from "../components/shared/Header";
 import Footer from "../components/shared/Footer";
@@ -12,13 +13,12 @@ import AboutUs from "../components/shared/AboutUs";
 // Icons
 import Loading from "../components/utils/loading";
 
-
 const Home = () => {
     const { isLoading } = useHomeQuery();
-
+    useLoad();
+    
     return (
         <div className='mx-6 md:mx-10 lg:mx-14 xl:mx-20'>
-            {/* General app margins */}
             
             {isLoading ?
                 <>

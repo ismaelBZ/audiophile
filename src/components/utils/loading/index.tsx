@@ -1,3 +1,4 @@
+// Icon
 import LoadingIcon from "./../../../assets/utils/loading/loading.svg"
 
 const Loading = () => {

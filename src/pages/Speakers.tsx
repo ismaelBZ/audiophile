@@ -1,5 +1,6 @@
 // Hooks
-import { useSpeakersQuery } from "../querys/useSpeakersQuery";
+import { useSpeakersQuery } from "../hooks/querys/useSpeakersQuery";
+import { useLoad } from "../hooks/useLoad";
 // Types
 import { ProductCard_T } from "../types/pages/productCard/ProductCard_T";
 // Components
@@ -13,6 +14,8 @@ import Loading from "../components/utils/loading";
 
 const Speakers = () => {
     const {data, isLoading} = useSpeakersQuery();
+    useLoad();
+    
 
     return (
         <div className='mx-6 md:mx-10 lg:mx-14 xl:mx-20 '>
@@ -26,10 +29,8 @@ const Speakers = () => {
                 <Loading />
             :
                 <main className="pt-16 pb-32 flex flex-col gap-32">
-                    <ul className="flex flex-col gap-28 sm:gap-32 3xl:w-lvw 3xl:-mx-20
-                    ">
-                        {/* If it's even reverse else (is's odd) normal */}
-                        {data?.map((product: ProductCard_T, index: number) => {
+                    <ul className="flex flex-col gap-28 sm:gap-32 3xl:w-lvw 3xl:-mx-20">
+                        { data?.map((product: ProductCard_T, index: number) => {
                             if (index % 2 == 0) {
                                 return (
                                     <li key={index}>
@@ -42,7 +43,6 @@ const Speakers = () => {
                                         <ProductCard product={product} />
                                     </li>
                                 )
-
                             }
                         })}
                     </ul>
@@ -52,6 +52,7 @@ const Speakers = () => {
                     <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20 2xl:mx-0 3xl:max-w-[1110px] 3xl:mx-auto">
                         <AboutUs  />
                     </div>
+                    
                 </main>
             }
 

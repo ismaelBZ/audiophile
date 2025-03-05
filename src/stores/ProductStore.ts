@@ -5,8 +5,6 @@ interface ProductUrl {
 
 const ProductStore = (set) => ({
     activeProduct: {},
-    urlPath: "",
-    setUrlPath: (newPath:string) => set({urlPath: newPath}),
     setActiveProduct: (product) => set({activeProduct: product}) 
 })
 

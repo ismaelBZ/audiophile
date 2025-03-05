@@ -8,7 +8,7 @@ export const CartCard = () => {
     const clearCart = useStore((state) => state.clearCart)
     const closeCart = useStore((state) => state.closeCart)
 
-
+    
     const totalItems = cartList?.reduce((acc, item) => {
         acc += item.quantity;
         return acc;

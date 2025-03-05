@@ -1,7 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
 
-const fifteenMinutes = 1000 * 60 * 15
-
 const queryClient = new QueryClient(
     {
         defaultOptions: {

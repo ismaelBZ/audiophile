@@ -1,12 +1,10 @@
-import Button from "./../../../utils/buttons/AddToCart";
-import { act, useState } from "react";
-import { formatPrice } from "../../../../utils/formatPrice";
-import { CartItem_T } from "../../../../types/CartItem_T";
-import { Product_T } from "../../../../types/Product_T";
+// Hook
 import { useStore } from "../../../../stores/useStore";
+// Components
+import Button from "./../../../utils/buttons/AddToCart";
 import Quantity from "./Quantity";
 
-const AddToCart = ({product}: {product: Product_T}) => {
+const AddToCart = () => {
     const addToCart = useStore((state) => state.addToCart);
     const activeProduct = useStore((state) => state.activeProduct);
     const setActiveProduct = useStore((state) => state.setActiveProduct);

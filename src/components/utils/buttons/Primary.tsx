@@ -1,7 +1,9 @@
 import { Link } from 'react-router';
 import classnames from 'classnames';
 
-const PrimaryBtn = ({children="see product", className, to="", onClick} : {children? : string, className?: string, to: string, onClick?: React.MouseEventHandler<HTMLAnchorElement>}) => {
+const PrimaryBtn = ({children="see product", className, to="", onClick} 
+    : {children? : string, className?: string, to: string, onClick?: React.MouseEventHandler<HTMLAnchorElement>}
+) => {
     return (
         <Link to={to} 
             onClick={onClick}
