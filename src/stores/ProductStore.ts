@@ -5,7 +5,7 @@ interface ProductUrl {
 
 const ProductStore = (set) => ({
     activeProduct: {},
-    setActiveProduct: (product) => set({activeProduct: product}) 
+    setActiveProduct: (product) => set({activeProduct: product})
 })
 
 export default ProductStore

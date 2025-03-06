@@ -9,8 +9,7 @@ import { formatPrice } from "../../../utils/formatPrice";
 import { useProductQuery } from "../../../hooks/querys/useProductsQuery";
 
 
-export const ProductDetailed = () => {
-    const {data: product} = useProductQuery();
+export const ProductDetailed = ({product} : {product: any}) => {
     const setActiveProduct = useStore((state) => state.setActiveProduct)
     const media = useStore((state) => state.deviceType)
     const formatedPrice = formatPrice(product.price);
@@ -23,8 +22,7 @@ export const ProductDetailed = () => {
         quantity: 0
     })
 
-    console.log("Product Detailed")
-    console.log(product)
+    console.log("Render - ProductDetailed");
 
     return (
         <>

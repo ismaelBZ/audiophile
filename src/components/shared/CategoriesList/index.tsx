@@ -6,8 +6,7 @@ import CategoryCard from "./CategoryCard";
 const CategoriesList = ({onClick} : {onClick?: () => void}) => {
     const {data} = useCategoriesQuery();
 
-    console.log("Categorie List")
-
+    
     return (
         <>
             {data && 

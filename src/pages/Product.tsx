@@ -1,7 +1,7 @@
 //Lib
 import queryClient from "../lib/queryClient";
 // Hooks
-import { useLocation } from "react-router";
+import { data, useLocation } from "react-router";
 import { useStore } from "../stores/useStore";
 import { useProductQuery } from "../hooks/querys/useProductsQuery";
 import { useLoad } from "../hooks/useLoad";
@@ -17,7 +17,7 @@ import Loading from "../components/utils/loading";
 
 
 const Product = () => {
-    const { isLoading } = useProductQuery();
+    const { data: product, isLoading } = useProductQuery(window.location.pathname);
     useLoad();
     
     const {pathname: pathName} = useLocation();
@@ -28,7 +28,7 @@ const Product = () => {
         setUrlPath(pathName);
         queryClient.invalidateQueries({queryKey: ["product"]});
     }
-
+    
     return (
         <div className="mx-6 md:mx-10 lg:mx-14 xl:mx-20">
 
@@ -44,12 +44,12 @@ const Product = () => {
                 <main>
                     <div className="2xl:w-lvw 2xl:-mx-20">
                         <div className="2xl:max-w-[1110px] 2xl:mx-auto">
-                            <ProductDetailed />
+                            <ProductDetailed product={product}/>
                         </div>
                     </div>
 
                     <div className="my-32 2xl:max-w-[1110px] 2xl:mx-auto">
-                        <SimilarProductList />
+                        <SimilarProductList data={product.similarProducts}/>
                     </div>
 
                     <div className="2xl:max-w-[1110px] 2xl:mx-auto">

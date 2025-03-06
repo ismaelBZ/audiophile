@@ -16,21 +16,21 @@ import Loading from "../components/utils/loading";
 const Home = () => {
     const { isLoading } = useHomeQuery();
     useLoad();
-    
+
     return (
         <div className='mx-6 md:mx-10 lg:mx-14 xl:mx-20'>
             
-            {isLoading ?
+            { isLoading ?
                 <>
-                    <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20">
+                    {/* <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20">
                         <Header />
-                    </div>
+                    </div> */}
 
                     <Loading />
 
-                    <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20">
+                    {/* <div className="-mx-6 md:-mx-10 lg:-mx-14 xl:-mx-20">
                         <Footer />
-                    </div>
+                    </div> */}
                     
                 </>
             :
@@ -51,7 +51,7 @@ const Home = () => {
                         <ul className="flex flex-col gap-6">
                             <li className="xl:mx-auto xl:w-[100%] xl:max-w-[1110px] ">
                                 <HighlightedProduct />
-                            </li>*
+                            </li>
                             <li className="2xl:mx-auto 2xl:max-w-[1110px]">
                                 <PopularProduct />
                             </li>

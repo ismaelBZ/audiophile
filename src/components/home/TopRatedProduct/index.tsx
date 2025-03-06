@@ -8,7 +8,6 @@ const TopRatedProduct = () => {
     const {data} = useHomeQuery();
     const media = useStore((state) => state.deviceType)
 
-    console.log("Top Rated Product");
     
     return (
         <>

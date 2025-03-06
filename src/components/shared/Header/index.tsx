@@ -25,7 +25,6 @@ const Header = ({bgColor} : {bgColor?: string}) => {
 
     }, [ isMobileMenuVisible ])
 
-    console.log("Header")
 
     return (
         <div style={{backgroundColor: bgColor ||'black'}} >

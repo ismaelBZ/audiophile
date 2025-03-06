@@ -1,10 +1,6 @@
 import Button from "../../../utils/buttons/Primary"
-import queryClient from "../../../../lib/queryClient";
 
 export const SimilarProduct = ({title, imgUrl, productUrl} : {imgUrl : string, title: string, productUrl: string}) => {
-
-    console.log(`Smp ${title}`);
-    console.log(productUrl)
 
     return (
         <div className="flex flex-col justify-between gap-8 items-center">

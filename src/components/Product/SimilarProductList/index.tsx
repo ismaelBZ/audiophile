@@ -4,13 +4,11 @@ import { SimilarProduct as SimilarProduct_T } from "../../../types/Product_T";
 import { useStore } from "../../../stores/useStore";
 // Components
 import { SimilarProduct } from "./SimilarProduct";
-import { useProductQuery } from "../../../hooks/querys/useProductsQuery";
 
-export const SimilarProductList = () => {
-    const { data } = useProductQuery()
+export const SimilarProductList = ({data} : {data: SimilarProduct[]}) => {
     const media = useStore((state) => state.deviceType);
 
-    console.log("Similar Products")
+    console.log("Render - Similar Product")
 
     return (
         <>
@@ -22,7 +20,7 @@ export const SimilarProductList = () => {
                 <ul className="flex flex-col items-center gap-14 lg:flex-row lg:gap-3" 
                     aria-label="Click on one of the see products buttons to navigate to the specific product page."
                 >
-                    { data.similarProducts.map(( product, index ) => {
+                    { data.map(( product, index ) => {
                         return (
                             <li className="grow" key={ index }>
                                 <SimilarProduct 

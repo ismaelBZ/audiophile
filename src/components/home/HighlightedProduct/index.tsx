@@ -9,7 +9,6 @@ const HighlightedProduct = () => {
     const {data} = useHomeQuery();
     const media = useStore((state) => state.deviceType);
 
-    console.log("Highlighted Product")
 
     return (
         <>

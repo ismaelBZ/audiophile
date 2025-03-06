@@ -8,7 +8,6 @@ const PopularProduct = () => {
     const { data } = useHomeQuery();
     const media = useStore((state) => state.deviceType)
 
-    console.log("Popular Product");
     
     return (
         <>

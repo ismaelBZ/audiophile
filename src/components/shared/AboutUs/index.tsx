@@ -6,8 +6,7 @@ const AboutUs = () => {
     const {data} = useAboutUsQuery();
     const width = useStore((state) => state.windowWidth);
 
-    console.log("About Us product");
-
+    
     return (
         <>
             { data && 

@@ -1,5 +1,5 @@
 // Libs
-import { BrowserRouter, Routes, Route, useLocation } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router";
 import { QueryClientProvider } from '@tanstack/react-query';
 import queryClient from './lib/queryClient.ts';
 // Hooks
@@ -27,7 +27,7 @@ const App = () => {
                     <Route path='/headphones' element={<Headphones />} />
                     <Route path='/speakers' element={<Speakers />} />
                     <Route path='/earphones' element={<Earphones />} />
-                    <Route path="/:category/:id" element={<Product />} />
+                    <Route path="/:category/:id" element={<Product key={window.location.pathname} />} />
                     <Route path="/checkout" element={<Checkout />} />
                 </Routes>
             </BrowserRouter>

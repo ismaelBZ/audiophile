@@ -6,8 +6,6 @@ import instagramIcon from "./../../../assets/footer/icon-instagram.svg"
 
 const Footer = () => {
 
-    console.log("Footer")
-
     return (
         <div className="bg-shadow">
             <footer 
