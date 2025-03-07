@@ -8,8 +8,6 @@ import { SimilarProduct } from "./SimilarProduct";
 export const SimilarProductList = ({data} : {data: SimilarProduct[]}) => {
     const media = useStore((state) => state.deviceType);
 
-    console.log("Render - Similar Product")
-
     return (
         <>
             { data && 

@@ -1,4 +1,5 @@
 export const fetchData = async (url: string) => {
+    // console.log(`fetch: ${url}`)
     try {
         const response =  await fetch(url); 
         const data = await response.json();

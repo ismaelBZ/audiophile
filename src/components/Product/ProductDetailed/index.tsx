@@ -6,7 +6,6 @@ import { useStore } from "../../../stores/useStore";
 import AddToCart from "./AddToCart";
 // Utils
 import { formatPrice } from "../../../utils/formatPrice";
-import { useProductQuery } from "../../../hooks/querys/useProductsQuery";
 
 
 export const ProductDetailed = ({product} : {product: any}) => {
@@ -22,7 +21,6 @@ export const ProductDetailed = ({product} : {product: any}) => {
         quantity: 0
     })
 
-    console.log("Render - ProductDetailed");
 
     return (
         <>

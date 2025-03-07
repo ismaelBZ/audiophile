@@ -9,8 +9,6 @@ const ProductCard = ({reverse, product} : {reverse?: boolean, product: ProductCa
     const width = useStore((state) => state.windowWidth);
     const xlFlexDirection = reverse ? "xl:flex-row-reverse" : "xl:flex-row";
 
-    console.log("Product Card");
-
     return (
         <div className="">
             <article className={`flex flex-col items-center gap-8 ${ xlFlexDirection }
