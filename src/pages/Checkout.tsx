@@ -46,8 +46,8 @@ const Checkout = () => {
         }
     }
 
-    console.log("render");
-    console.log(errors);
+    // console.log("render");
+    // console.log(errors);
 
     return (
         <div className="bg-snow">
@@ -57,9 +57,9 @@ const Checkout = () => {
                     <Header />
                 </div>
 
-                <GoBack />
+                {/* <GoBack /> */}
 
-                <main className="mb-24 flex flex-col gap-8 ">
+                <main className="mt-[50px] mb-24 flex flex-col gap-8 ">
                     <div className="xl:max-w-[1110px] xl:mx-auto xl:flex xl:gap-7 xl:items-start">
                         <section className="p-6 bg-white rounded-md basis-[65%]">
                             

@@ -2,7 +2,9 @@ import { useProductQuery } from "../../../../hooks/querys/useProductsQuery";
 import Button from "../../../utils/buttons/Primary"
 
 export const SimilarProduct = ({title, imgUrl, productUrl} : {imgUrl : string, title: string, productUrl: string}) => {
-    const handleQuery = () => {useProductQuery(productUrl)}
+    const handleQuery = () => {
+        const refetch = useProductQuery(productUrl);
+    }
     
     return (
         <div className="flex flex-col justify-between gap-8 items-center">

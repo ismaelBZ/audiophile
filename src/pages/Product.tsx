@@ -10,13 +10,18 @@ import GoBack from "../components/utils/buttons/GoBack";
 import CategoriesList from "../components/shared/CategoriesList";
 import { SimilarProductList } from "../components/Product/SimilarProductList";
 import Loading from "../components/utils/loading";
+import { useEffect } from "react";
 
 
 const Product = () => {
     const { data: product, isLoading } = useProductQuery(window.location.pathname);
     useLoad();
 
-    console.log("Render");
+    useEffect(() => {
+        console.log("Render");
+
+    })
+
 
     return (
         <div className="mx-6 md:mx-10 lg:mx-14 xl:mx-20">
@@ -25,12 +30,12 @@ const Product = () => {
                 <Header />
             </div>
 
-            <GoBack />
+            {/* <GoBack /> */}
 
             { isLoading ?
                 <Loading />
             :
-                <main>
+                <main className="mt-[50px]">
                     <div className="2xl:w-lvw 2xl:-mx-20">
                         <div className="2xl:max-w-[1110px] 2xl:mx-auto">
                             <ProductDetailed product={product} key={product.id} />
